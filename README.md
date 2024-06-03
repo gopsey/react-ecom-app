@@ -19,13 +19,13 @@ Success page - 1 day\
 
 ## Project structure
 components\
-   ui\
-   form\
+|- ui\
+|- form\
 pages\
-   Home\
-   Product\
-   Cart\
+|- Home\
+|- Product\
+|- Cart\
 services\
 context\
 utils\
-assets\
+assets
