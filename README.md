@@ -17,7 +17,7 @@ Category page Filters - 2 days\
 Cart list and overall summary - 2 days\
 Success page - 1 day\
 
-## Project structure
+## Project folder structure
 components\
 |- ui\
 |- form\
