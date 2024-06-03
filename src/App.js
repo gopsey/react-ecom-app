@@ -1,9 +1,10 @@
-import './App.css';
+import './App.scss';
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      Welcome to the React Ecom website!
+      <Home></Home>
     </>
   );
 }

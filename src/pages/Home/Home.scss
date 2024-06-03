@@ -1,0 +1,31 @@
+.container {
+   .home-section {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      .section-title {
+         display: flex;
+         justify-content: center;
+         text-transform: uppercase;
+         font-size: 48px;
+         font-weight: bold;
+      }
+
+      .products-wrapper {
+         display: flex;
+         justify-content: center;
+         gap: 20px;
+         border: 1px;
+      }
+
+      .button-view-all {
+         display: flex;
+         justify-content: center;
+      }
+   }
+
+   .divider {
+      margin: 50px 0 50px 0;
+   }
+}

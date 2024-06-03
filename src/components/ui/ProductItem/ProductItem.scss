@@ -1,0 +1,43 @@
+.product-wrapper {
+   cursor: pointer;
+
+   .product-image .pdt-img {
+      border-radius: 20px;
+      cursor: pointer;
+   }
+
+   .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .product-ratings {
+         display: flex;
+         gap: 8px;
+      }
+
+      .product-price {
+         display: flex;
+         gap: 10px;
+         font-size: 24px;
+         font-weight: 600;
+         align-items: flex-end;
+
+         .previous-price {
+            color: #9A9A9A;
+         }
+
+         .discount-price {
+            background: rgba(255, 51, 51, .1);
+            border: none;
+            width: 58px;
+            height: 28px;
+         }
+      }
+
+      .product-title {
+         font-size: 20px;
+         font-weight: 600;
+      }
+   }
+}
