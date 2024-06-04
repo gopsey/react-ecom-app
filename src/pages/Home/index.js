@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
-import ProductItem from '../../components/ui/ProductItem';
-import CommonButton from '../../components/form/CommonButton';
-import tee1 from "../../assets/svg/tee1.svg";
-import jeans1 from "../../assets/svg/jeans1.svg";
-import shirt1 from "../../assets/svg/shirt1.svg";
-import tee2 from "../../assets/svg/tee2.svg";
+import React, { useEffect, useState } from 'react'
+import Divider from '@mui/material/Divider'
+import Container from '@mui/material/Container'
+import ProductItem from '../../components/ui/ProductItem'
+import MasonryGrid from '../../components/ui/MasonryGrid'
+import HomeBanner from '../../components/ui/HomeBanner'
+import HomeBrandsStack from '../../components/ui/HomeBrandsStack'
+import CommonButton from '../../components/form/CommonButton'
+import tee1 from "../../assets/svg/tee1.svg"
+import jeans1 from "../../assets/svg/jeans1.svg"
+import shirt1 from "../../assets/svg/shirt1.svg"
+import tee2 from "../../assets/svg/tee2.svg"
 import './Home.scss';
 
 const Home = () => {
@@ -54,6 +57,12 @@ const Home = () => {
 
    return (
       <>
+         <section className='home-section home-banner'>
+            <HomeBanner></HomeBanner>
+         </section>
+         <section className='home-section home-brands'>
+            <HomeBrandsStack></HomeBrandsStack>
+         </section>
          <Container maxWidth='xl' className='container'>
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
@@ -86,7 +95,7 @@ const Home = () => {
 
             <Divider variant='fullWidth' className='divider' />
 
-            <section className='home-section'>
+            <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
                <div className='products-wrapper'>
                   {
@@ -113,6 +122,10 @@ const Home = () => {
                      color={'#000000'}
                      borderColor={'rgba(0,0,0,.1)'}></CommonButton>
                </div>
+            </section>
+            <section className='home-section browse-dress-style'>
+               <div className='section-title'>Browse by dress style</div>
+               <MasonryGrid></MasonryGrid>
             </section>
          </Container>
       </>

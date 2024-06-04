@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 
-const CommonButton = ({ variant, bgColor, btnText, color, borderColor }) => {
+const CommonButton = (props) => {
+   const { variant, bgColor, btnText, color, borderColor } = { ...props };
    return (
       <Button
          variant={variant}
@@ -11,7 +12,8 @@ const CommonButton = ({ variant, bgColor, btnText, color, borderColor }) => {
             color,
             borderColor,
             textTransform: 'none',
-            minWidth: '210px'
+            minWidth: '210px',
+            height: '50px',
          }}
       >{btnText}</Button>
    )
