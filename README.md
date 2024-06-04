@@ -1,12 +1,12 @@
 # react-ecom-app
 E-Commerce Application using React as Frontend Framework\
-React, Material UI(MUI for components, icons and fonts)
+React, Material UI(MUI for components, icons and fonts), Carousel(mdnbootstrap)?, 
 
 ## Initial Timelines by components
-Header - 1 day\
-Search bar in header - 1 day\
-Banner - 1 day\
-Horizontal flex view - 1 day\
+Header - 1 day Done in half day\
+Search bar in header - 1 day Done in half day\
+Banner - 1 day Done in Half day\
+Horizontal flex view - 1 day Done in Half day\
 Testimony - 1 day\
 Footer - 1 day\
 Breadcrumb navigation - 1 day\

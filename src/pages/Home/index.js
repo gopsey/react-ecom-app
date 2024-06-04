@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Divider from '@mui/material/Divider'
-import Container from '@mui/material/Container'
+import { Divider, Container } from '@mui/material'
+import Header from '../../components/ui/Header'
 import ProductItem from '../../components/ui/ProductItem'
 import MasonryGrid from '../../components/ui/MasonryGrid'
 import HomeBanner from '../../components/ui/HomeBanner'
@@ -57,6 +57,9 @@ const Home = () => {
 
    return (
       <>
+         <section>
+            <Header></Header>
+         </section>
          <section className='home-section home-banner'>
             <HomeBanner></HomeBanner>
          </section>

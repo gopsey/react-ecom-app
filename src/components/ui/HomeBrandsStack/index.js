@@ -19,7 +19,7 @@ const HomeBrandsStack = () => {
          >
             {
                brandLogos.map((brandLogo, i) => {
-                  return <img src={brandLogo} alt="" className='brand-img' key={`brand-${i + 1}`} />
+                  return <img src={brandLogo} alt="" className='brand-img' key={`brand-${i + 1}`} loading='lazy' />
                })
             }
          </Stack>

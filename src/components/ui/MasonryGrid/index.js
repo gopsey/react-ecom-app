@@ -14,25 +14,25 @@ const MasonryGrid = () => {
             <Grid item sm={12} lg={4}>
                <div className='grid-wrapper'>
                   <span className='grid-text'>Casual</span>
-                  <img src={casual} alt="" />
+                  <img src={casual} alt="" loading='lazy' />
                </div>
             </Grid>
             <Grid item sm={12} lg={8}>
                <div className='grid-wrapper'>
                   <span className='grid-text'>Formal</span>
-                  <img src={formal} alt="" />
+                  <img src={formal} alt="" loading='lazy' />
                </div>
             </Grid>
             <Grid item sm={12} lg={8}>
                <div className='grid-wrapper'>
                   <span className='grid-text'>Party</span>
-                  <img src={party} alt="" />
+                  <img src={party} alt="" loading='lazy' />
                </div>
             </Grid>
             <Grid item sm={12} lg={4}>
                <div className='grid-wrapper'>
                   <span className='grid-text'>Gym</span>
-                  <img src={gym} alt="" />
+                  <img src={gym} alt="" loading='lazy' />
                </div>
             </Grid>
          </Grid>

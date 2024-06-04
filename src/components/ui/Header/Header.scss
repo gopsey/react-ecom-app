@@ -1,0 +1,39 @@
+.app-icon {
+   text-transform: uppercase;
+   font-size: 32px;
+   font-weight: 800;
+   color: #000000;
+}
+
+.search {
+   position: relative;
+   background-color: rgba(240, 240, 240, 1);
+   border-radius: 62px;
+   width: auto;
+
+   &:hover {
+      background-color: rgba(240, 240, 240, 0.5);
+   }
+
+   .search-icon-wrapper {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-top: 10px;
+
+      .search-icon {
+         color: rgba(0, 0, 0, .4);
+      }
+   }
+
+   .search-input {
+      padding: 6px 6px 6px 50px;
+      width: 60ch;
+   }
+}
+
+.header-actions {
+   margin-left: 20px;
+}

@@ -1,6 +1,5 @@
 import React from 'react'
-import Rating from '@mui/material/Rating'
-import Chip from '@mui/material/Chip'
+import { Rating, Chip } from '@mui/material'
 import './ProductItem.scss'
 
 const ProductItem = ({ productId, image, title, rating, currentPrice, previousPrice, discount }) => {
@@ -9,7 +8,7 @@ const ProductItem = ({ productId, image, title, rating, currentPrice, previousPr
       <>
          <div className='product-wrapper'>
             <div className='product-image'>
-               <img src={image} alt="" className='pdt-img' />
+               <img src={image} alt="" className='pdt-img' loading='lazy' />
             </div>
             <div className='product-details'>
                <div className='product-title'>{title}</div>

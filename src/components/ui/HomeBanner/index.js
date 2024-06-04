@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid'
-import Divider from '@mui/material/Divider'
-import Stack from '@mui/material/Stack'
+import { Grid, Divider, Stack } from '@mui/material'
 import CommonButton from '../../form/CommonButton'
 import homebanner from '../../../assets/svg/homebanner.svg'
 import homestar from '../../../assets/svg/homestar.svg'
@@ -38,11 +36,11 @@ const HomeBanner = () => {
                   </Stack>
                </Grid>
                <Grid item className='banner-extra-images' lg={6}>
-                  <img src={homestar} alt="" className='banner-star-left' />
-                  <img src={homestar} alt="" className='banner-star-right' />
+                  <img src={homestar} alt="" className='banner-star-left' loading='lazy' />
+                  <img src={homestar} alt="" className='banner-star-right' loading='lazy' />
                </Grid>
             </Grid>
-            <img src={homebanner} alt="" className='banner-image' />
+            <img src={homebanner} alt="" className='banner-image' loading='lazy' />
          </div>
       </>
    )
