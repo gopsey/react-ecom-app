@@ -1,6 +1,8 @@
 # react-ecom-app
-E-Commerce Application using React as Frontend Framework\
-React, Material UI(MUI for components, icons and fonts), Carousel(mdnbootstrap)?, 
+1. E-Commerce Application using React as Frontend Framework\
+2. React, Material UI(MUI for components, icons and fonts), Carousel(mdnbootstrap)?, 
+3. Used a custom subdomain to deploy app live using "github pages". Steps include: adding ecomreact as name\
+under new CNAME DNS Record with gopsey.github.io as Data. Then configuring github pages settings appropriately.
 
 ## Initial Timelines by components
 Header - 1 day Done in half day\
