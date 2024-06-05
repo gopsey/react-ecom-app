@@ -1,6 +1,6 @@
 # react-ecom-app
 1. E-Commerce Application using React as Frontend Framework
-2. React, Material UI(MUI for components, icons and fonts), Carousel(mdnbootstrap)?, 
+2. React, Material UI(MUI for components, icons and fonts), Carousel(mdnbootstrap)?, Routing(react-router-dom)
 3. Steps to deploy UI app to custom domain using github pages:\
 |-- npm i gh-pages\
 |-- Add "homepage": "< url to be deployed to >",\
@@ -9,7 +9,7 @@
 |-- Add subdomain as "name" under new "CNAME" DNS Record with < username >.github.io as "Data". Then configuring github pages settings appropriately.\
 |-- Once app is ready for deployment, "npm run deploy"\
 |-- Go to Github Pages of repo and set Source: Deploy from a branch, Branch: gh-pages, Custom domain: < abc.def.com >, Enforce HTTPS\
-|-- Once saved, the page will be published!\
+|-- Once saved, the page will be published!
 
 ## Initial Timelines by components
 Header - 1 day Done in half day\
@@ -29,12 +29,12 @@ Full page responsiveness - 2 days
 
 ## Project folder structure
 components\
-|- ui\
-|- form\
+|-- ui\
+|-- form\
 pages\
-|- Home\
-|- Product\
-|- Cart\
+|-- Home\
+|-- Product\
+|-- Cart\
 services\
 context\
 utils\

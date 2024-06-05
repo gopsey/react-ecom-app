@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Divider, Container } from '@mui/material'
-import Header from '../../components/ui/Header'
-import ProductItem from '../../components/ui/ProductItem'
 import MasonryGrid from '../../components/ui/MasonryGrid'
 import HomeBanner from '../../components/ui/HomeBanner'
 import HomeBrandsStack from '../../components/ui/HomeBrandsStack'
+import ProductsGrid from '../../components/ui/ProductsGrid'
 import CommonButton from '../../components/form/CommonButton'
 import tee1 from "../../assets/svg/tee1.svg"
 import jeans1 from "../../assets/svg/jeans1.svg"
 import shirt1 from "../../assets/svg/shirt1.svg"
 import tee2 from "../../assets/svg/tee2.svg"
+import casual from "../../assets/svg/casual.svg"
+import formal from "../../assets/svg/formal.svg"
+import party from "../../assets/svg/party.svg"
+import gym from "../../assets/svg/gym.svg"
 import './Home.scss';
 
 const Home = () => {
    const [newArrivals, setNewArrivals] = useState([]);
+   const [masonryGridProps, setMasonryGridProps] = useState([]);
+   const [gridProperties] = useState({
+      xs: 6,
+      sm: 6,
+      md: 3,
+   })
 
    // On Init
    useEffect(() => {
@@ -52,14 +61,42 @@ const Home = () => {
             discount: null,
          },
       ]
+      const masonryGridProperties = [
+         {
+            gridText: 'Casual',
+            gridImage: casual,
+            routeLink: '/casual',
+            sm: 12,
+            lg: 4,
+         },
+         {
+            gridText: 'Formal',
+            gridImage: formal,
+            routeLink: '/formal',
+            sm: 12,
+            lg: 8,
+         },
+         {
+            gridText: 'Party',
+            gridImage: party,
+            routeLink: '/party',
+            sm: 12,
+            lg: 8,
+         },
+         {
+            gridText: 'Gym',
+            gridImage: gym,
+            routeLink: '/gym',
+            sm: 12,
+            lg: 4,
+         },
+      ]
+      setMasonryGridProps(masonryGridProperties)
       setNewArrivals(newArrivals)
    }, [])
 
    return (
       <>
-         <section>
-            <Header></Header>
-         </section>
          <section className='home-section home-banner'>
             <HomeBanner></HomeBanner>
          </section>
@@ -69,23 +106,7 @@ const Home = () => {
          <Container maxWidth='xl' className='container'>
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
-               <div className='products-wrapper'>
-                  {
-                     newArrivals.map((productItem) => {
-                        //Mobile carousel MUI to be used for mobile view
-                        return <ProductItem
-                           productId={productItem.productId}
-                           image={productItem.image}
-                           title={productItem.title}
-                           rating={productItem.rating}
-                           currentPrice={productItem.currentPrice}
-                           previousPrice={productItem.previousPrice}
-                           discount={productItem.discount}
-                           key={productItem?.productId}>
-                        </ProductItem>
-                     })
-                  }
-               </div>
+               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
                <div className='button-view-all'>
                   <CommonButton
                      variant='outlined'
@@ -100,23 +121,7 @@ const Home = () => {
 
             <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
-               <div className='products-wrapper'>
-                  {
-                     newArrivals.map((productItem) => {
-                        //Mobile carousel MUI to be used for mobile view
-                        return <ProductItem
-                           productId={productItem.productId}
-                           image={productItem.image}
-                           title={productItem.title}
-                           rating={productItem.rating}
-                           currentPrice={productItem.currentPrice}
-                           previousPrice={productItem.previousPrice}
-                           discount={productItem.discount}
-                           key={productItem?.productId}>
-                        </ProductItem>
-                     })
-                  }
-               </div>
+               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
                <div className='button-view-all'>
                   <CommonButton
                      variant='outlined'
@@ -128,7 +133,7 @@ const Home = () => {
             </section>
             <section className='home-section browse-dress-style'>
                <div className='section-title'>Browse by dress style</div>
-               <MasonryGrid></MasonryGrid>
+               <MasonryGrid masonryGridProps={masonryGridProps}></MasonryGrid>
             </section>
          </Container>
       </>

@@ -1,5 +1,6 @@
 import './Header.scss'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, AppBar, Container, Toolbar, Box, InputBase, IconButton } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -14,10 +15,10 @@ const Header = () => {
    }, [])
 
    return (
-      <AppBar position='static' color='inherit'>
+      <AppBar position='static' color='inherit' elevation={0}>
          <Container maxWidth='xl'>
             <Toolbar>
-               <span className='app-icon'>Shop.co</span>
+               <Link to='/' className='app-icon'>Shop.co</Link>
                <Box flexGrow='1' display={{ xs: 'none', md: 'flex' }} marginLeft='40px'>
                   {
                      headersList.map((header) => {
