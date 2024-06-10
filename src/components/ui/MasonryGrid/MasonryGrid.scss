@@ -1,21 +1,26 @@
-.grid-wrapper {
-   // display: grid;
-   // justify-items: stretch;
-   position: relative;
-   border-radius: 20px;
-   cursor: pointer;
+.grid-link {
+   text-decoration: none;
+   color: inherit;
 
-   .grid-text {
-      position: absolute;
-      top: 30px;
-      left: 40px;
-      font-size: 36px;
-      font-weight: 500;
-   }
-
-   img {
-      width: 100%;
-      height: 415px;
+   .grid-wrapper {
+      // display: grid;
+      // justify-items: stretch;
+      position: relative;
       border-radius: 20px;
+      cursor: pointer;
+
+      .grid-text {
+         position: absolute;
+         top: 30px;
+         left: 40px;
+         font-size: 36px;
+         font-weight: 500;
+      }
+
+      img {
+         width: 100%;
+         height: 415px;
+         border-radius: 20px;
+      }
    }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@mui/material/Button';
 
 const CommonButton = (props) => {
-   const { variant, bgColor, btnText, color, borderColor } = { ...props };
+   const { variant, bgColor, btnText, color, borderColor, onButtonClick } = { ...props };
    return (
       <Button
          variant={variant}
@@ -12,9 +12,10 @@ const CommonButton = (props) => {
             color,
             borderColor,
             textTransform: 'none',
-            minWidth: '210px',
-            height: '50px',
+            width: '100%',
+            height: '44px',
          }}
+         onClick={onButtonClick}
       >{btnText}</Button>
    )
 }

@@ -29,36 +29,44 @@ const Home = () => {
       const newArrivals = [
          {
             productId: 99871,
-            image: tee1,
+            defaultImage: tee1,
+            productImages: [jeans1, shirt1, tee2],
             title: 'T-Shirt with tape details',
             rating: 4.5,
             currentPrice: '$120',
             previousPrice: null,
             discount: null,
+            category: 'new-arrivals',
          }, {
             productId: 99872,
-            image: jeans1,
+            defaultImage: jeans1,
+            productImages: [shirt1, tee1, tee2],
             title: 'Skinny fit jeans',
             rating: 3.5,
             currentPrice: '$240',
             previousPrice: null,
             discount: null,
+            category: 'new-arrivals',
          }, {
             productId: 99873,
-            image: shirt1,
+            defaultImage: shirt1,
+            productImages: [tee1, tee2, jeans1],
             title: 'Checked Shirt',
             rating: 2.5,
             currentPrice: '$180',
             previousPrice: '$260',
             discount: '20%',
+            category: 'new-arrivals',
          }, {
             productId: 99874,
-            image: tee2,
+            defaultImage: tee2,
+            productImages: [tee1, jeans1, shirt1],
             title: 'Sleeved strioped T-Shirt',
             rating: 5,
             currentPrice: '$130',
             previousPrice: null,
             discount: null,
+            category: 'new-arrivals',
          },
       ]
       const masonryGridProperties = [
@@ -107,13 +115,15 @@ const Home = () => {
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
                <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
-               <div className='button-view-all'>
-                  <CommonButton
-                     variant='outlined'
-                     bgColor={''}
-                     btnText={'View All'}
-                     color={'#000000'}
-                     borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+               <div className="button-view-wrapper">
+                  <div className='button-view-all'>
+                     <CommonButton
+                        variant='outlined'
+                        bgColor={''}
+                        btnText={'View All'}
+                        color={'#000000'}
+                        borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+                  </div>
                </div>
             </section>
 
@@ -122,13 +132,15 @@ const Home = () => {
             <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
                <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
-               <div className='button-view-all'>
-                  <CommonButton
-                     variant='outlined'
-                     bgColor={''}
-                     btnText={'View All'}
-                     color={'#000000'}
-                     borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+               <div className="button-view-wrapper">
+                  <div className='button-view-all'>
+                     <CommonButton
+                        variant='outlined'
+                        bgColor={''}
+                        btnText={'View All'}
+                        color={'#000000'}
+                        borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+                  </div>
                </div>
             </section>
             <section className='home-section browse-dress-style'>

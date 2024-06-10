@@ -1,0 +1,11 @@
+.counter-value-wrapper {
+   width: 50px;
+   background-color: rgb(240, 240, 240);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   .counter-value {
+      margin-bottom: 2px;
+   }
+}

@@ -1,0 +1,14 @@
+.colors-wrapper {
+   display: flex;
+   gap: 12px;
+
+   .color-button-item {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+}

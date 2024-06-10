@@ -17,7 +17,9 @@ const HomeBanner = () => {
                <Grid item className='banner-content' lg={6}>
                   <span className='banner-title'>Find clothes that matches your style</span>
                   <span className='banner-subtext'>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</span>
-                  <CommonButton {...bannerShopNowProps} className='banner-shop-now'></CommonButton>
+                  <div className='banner-shop-now'>
+                     <CommonButton {...bannerShopNowProps} className='banner-shop-now'></CommonButton>
+                  </div>
                   <Stack
                      direction='row'
                      divider={<Divider orientation="vertical" flexItem />}

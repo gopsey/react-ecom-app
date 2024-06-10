@@ -12,9 +12,14 @@
          font-weight: bold;
       }
 
-      .button-view-all {
+      .button-view-wrapper {
          display: flex;
          justify-content: center;
+         width: 100%;
+
+         .button-view-all {
+            width: 210px;
+         }
       }
    }
 
