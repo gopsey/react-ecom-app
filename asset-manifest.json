@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.8f2d8f4a.css",
-    "main.js": "/static/js/main.23fec309.js",
+    "main.css": "/static/css/main.78b19076.css",
+    "main.js": "/static/js/main.a254438b.js",
     "static/js/453.b636c0af.chunk.js": "/static/js/453.b636c0af.chunk.js",
     "static/media/homebanner.svg": "/static/media/homebanner.f950b728f4961887c892c1cbeee6bf4a.svg",
     "static/media/shirt1.svg": "/static/media/shirt1.607d6d72aec6d385b8a821de0a70b0f1.svg",
-    "static/media/jeans1.svg": "/static/media/jeans1.23a36582a72c2d693abe38103a8f5297.svg",
+    "static/media/jeans1.svg": "/static/media/jeans1.ffb1b878990708a0a0ecbe77568456e3.svg",
     "static/media/tee2.svg": "/static/media/tee2.c3c12bb5866ea60e71e8ac9152352036.svg",
-    "static/media/tee1.svg": "/static/media/tee1.875d00554702f6f7a8878e4bad6b56a8.svg",
+    "static/media/tee1.svg": "/static/media/tee1.2c742e76c4bbf774eff50da3d2242e8e.svg",
     "static/media/gym.svg": "/static/media/gym.54ff3a3cc63bf9909720a4a26ccbc436.svg",
     "static/media/party.svg": "/static/media/party.227d025ea3074d29000f31e15c612062.svg",
     "static/media/formal.svg": "/static/media/formal.0828bb27d96ff8ca870d109beda82d11.svg",
@@ -19,12 +19,12 @@
     "static/media/zara.svg": "/static/media/zara.cbce13acf06ccaa97f3988d31158bfc8.svg",
     "index.html": "/index.html",
     "static/media/homestar.svg": "/static/media/homestar.7d9d6b6dc9bec1c511d258fb336a67a5.svg",
-    "main.8f2d8f4a.css.map": "/static/css/main.8f2d8f4a.css.map",
-    "main.23fec309.js.map": "/static/js/main.23fec309.js.map",
+    "main.78b19076.css.map": "/static/css/main.78b19076.css.map",
+    "main.a254438b.js.map": "/static/js/main.a254438b.js.map",
     "453.b636c0af.chunk.js.map": "/static/js/453.b636c0af.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f2d8f4a.css",
-    "static/js/main.23fec309.js"
+    "static/css/main.78b19076.css",
+    "static/js/main.a254438b.js"
   ]
 }
