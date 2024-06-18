@@ -14,7 +14,6 @@ const CommonChipGroup = (props) => {
       const chipsListToUpdate = updatedChipsList.map((chipItem) => ({ ...chipItem, isSelected: chipItem.id === key }))
       setUpdatedChipsList(chipsListToUpdate)
       selectedItem(key) // Passing back selected color to parent
-      console.log('Chip Item', key)
    }
 
    return (

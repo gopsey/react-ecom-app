@@ -3,7 +3,7 @@ import Rating from '@mui/material/Rating';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import './TestimonialCarousel.scss'
 
-const TestimonialCarousel = ({ slidesData, prevSlide ,nextSlide }) => {
+const TestimonialCarousel = ({ slidesData, prevSlide, nextSlide }) => {
    const [currentIndex, setCurrentIndex] = useState(0);
    const slidesLength = slidesData.length;
    const [updatedSlidesData, setUpdatedSlidesData] = useState([])
@@ -20,27 +20,23 @@ const TestimonialCarousel = ({ slidesData, prevSlide ,nextSlide }) => {
 
    const goToPrevSlide = () => {
       const currIndex = currentIndex - 3 < 0 ? (slidesLength - (3 - currentIndex)) : currentIndex - 3;
-      console.log(currIndex)
       setCurrentIndex(currIndex)
       let abc = [];
       for (let index = 0; index < 5; index++) {
          const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
          abc.push(val)
       }
-      console.log(abc)
       setUpdatedSlidesData(abc);
    }
 
    const goToNextSlide = () => {
       const currIndex = currentIndex + 3 >= slidesLength ? ((currentIndex + 3) - slidesLength) : currentIndex + 3;
-      console.log(currIndex)
       setCurrentIndex(currIndex)
       let abc = [];
       for (let index = 0; index < 5; index++) {
          const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
          abc.push(val)
       }
-      console.log(abc)
       setUpdatedSlidesData(abc);
    }
 

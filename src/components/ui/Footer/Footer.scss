@@ -1,0 +1,105 @@
+.footer-wrapper {
+   height: 500px;
+   margin-top: 100px;
+   background-color: #F0F0F0;
+   position: relative;
+   display: flex;
+   justify-content: center;
+
+   .newsletter-container {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      background-color: #000000;
+      border-radius: 20px;
+      padding: 36px 64px;
+      display: flex;
+      align-items: center;
+
+      .newsletter-banner {
+         text-transform: uppercase;
+         color: #FFFFFF;
+         font-weight: 800;
+         font-size: 40px;
+         flex: 1;
+      }
+
+      .newsletter-form {
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         align-items: flex-end;
+
+         .newsletter-email {
+            background-color: #FFFFFF;
+            color: #000000;
+            border-radius: 62px;
+            width: 350px;
+            height: 42px;
+            padding-left: 16px;
+         }
+
+         .button-subscribe {
+            width: 350px;
+         }
+      }
+   }
+
+   .footer-contents-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-top: 150px;
+      gap: 20px;
+
+      .footer-contents {
+         display: flex;
+         justify-content: space-between;
+         gap: 20px;
+
+         .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 20px;
+
+            .app-icon {
+               text-transform: uppercase;
+               font-size: 32px;
+               font-weight: 800;
+               color: #000000;
+               text-decoration: none;
+            }
+
+            .footer-link {
+               text-decoration: none;
+               color: inherit;
+               cursor: pointer;
+            }
+         }
+
+         .footer-column.logo {
+            flex: 2;
+
+            .logo-text {
+               width: 75%;
+            }
+
+            .social-links {
+               display: flex;
+               gap: 10px;
+
+               .social-link {
+                  cursor: pointer;
+               }
+            }
+         }
+
+         .footer-link-title {
+            text-transform: uppercase;
+            font-weight: 600;
+         }
+      }
+   }
+}

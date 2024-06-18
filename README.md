@@ -16,10 +16,10 @@ Header - 1 day Done in half day\
 Search bar in header - 1 day Done in half day\
 Banner - 1 day Done in Half day\
 Horizontal flex view - 1 day Done in Half day\
-Testimony - 1 day\
-Footer - 1 day\
+Testimony - 1 day Done in 2 days\
+Footer - 1 day Done in half day\
 Breadcrumb navigation - 1 day\
-View Product - 1 day\
+View Product - 1 day Done in 2 days\
 Tab navigation for View Product - 1 day\
 Category page 3x3 grid view - 2 days Done in 1 day\
 Category page Filters - 2 days\
