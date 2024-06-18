@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Divider, Container } from '@mui/material'
+import Divider from '@mui/material/Divider'
+import Container from '@mui/material/Container'
+import WestIcon from '@mui/icons-material/West';
+import EastIcon from '@mui/icons-material/East';
 import MasonryGrid from '../../components/ui/MasonryGrid'
 import HomeBanner from '../../components/ui/HomeBanner'
 import HomeBrandsStack from '../../components/ui/HomeBrandsStack'
 import ProductsGrid from '../../components/ui/ProductsGrid'
+import TestimonialCarousel from '../../components/ui/TestimonialCarousel'
 import CommonButton from '../../components/form/CommonButton'
 import tee1 from "../../assets/svg/tee1.svg"
 import jeans1 from "../../assets/svg/jeans1.svg"
@@ -23,6 +27,73 @@ const Home = () => {
       sm: 6,
       md: 3,
    })
+   const [testimonialsData] = useState([
+      {
+         id: 1,
+         rating: 5,
+         reviewerName: 'Alex K',
+         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
+         isVerified: true,
+      },
+      {
+         id: 2,
+         rating: 4,
+         reviewerName: 'Sarah K',
+         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
+         isVerified: true,
+      },
+      {
+         id: 3,
+         rating: 3,
+         reviewerName: 'Samuel K',
+         testimonyText: 'As someone who\'s always on the lookout for unique fashion pieces, I\'m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.',
+         isVerified: true,
+      },
+      {
+         id: 4,
+         rating: 4.5,
+         reviewerName: 'Scarlett',
+         testimonyText: 'I\'m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I\'ve bought has exceeded my expectations.',
+         isVerified: true,
+      },
+      {
+         id: 5,
+         rating: 4,
+         reviewerName: 'John K',
+         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
+         isVerified: true,
+      },
+      {
+         id: 6,
+         rating: 5,
+         reviewerName: 'Jacob Z',
+         testimonyText: 'As someone who\'s always on the lookout for unique fashion pieces, I\'m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.',
+         isVerified: false,
+      },
+      {
+         id: 7,
+         rating: 1,
+         reviewerName: 'Max O',
+         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
+         isVerified: false,
+      },
+      {
+         id: 8,
+         rating: 2,
+         reviewerName: 'Kenny I',
+         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
+         isVerified: true,
+      },
+      {
+         id: 9,
+         rating: 3.5,
+         reviewerName: 'Zorro M',
+         testimonyText: 'I\'m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I\'ve bought has exceeded my expectations.',
+         isVerified: false,
+      },
+   ])
+   const [prevSlide, setPrevSlide] = useState(false);
+   const [nextSlide, setNextSlide] = useState(false);
 
    // On Init
    useEffect(() => {
@@ -146,6 +217,15 @@ const Home = () => {
             <section className='home-section browse-dress-style'>
                <div className='section-title'>Browse by dress style</div>
                <MasonryGrid masonryGridProps={masonryGridProps}></MasonryGrid>
+            </section>
+            <section className='home-section testimonials-carousel'>
+               <div className='section-title testimony-wrapper'>Our Happy Customers
+                  <div className='carousel-actions'>
+                     <WestIcon className='left-arrow' onClick={() => setPrevSlide(!prevSlide)} />
+                     <EastIcon className='right-arrow' onClick={() => setNextSlide(!nextSlide)} />
+                  </div>
+               </div>
+               <TestimonialCarousel slidesData={testimonialsData} prevSlide={prevSlide} nextSlide={nextSlide} />
             </section>
          </Container>
       </>

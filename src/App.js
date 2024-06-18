@@ -9,11 +9,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Layout />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/:category' element={<BrowseByCategory />} />
-          <Route path='/:category/:product' element={<ProductDetails />} />
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='/:category' element={<BrowseByCategory />} />
+            <Route path='/:category/:product' element={<ProductDetails />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

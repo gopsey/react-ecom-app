@@ -1,5 +1,6 @@
 import React from 'react'
-import { Rating, Chip } from '@mui/material'
+import Rating from '@mui/material/Rating'
+import Chip from '@mui/material/Chip'
 import './ProductItem.scss'
 
 const ProductItem = (props) => {

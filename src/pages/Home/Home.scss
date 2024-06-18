@@ -33,6 +33,17 @@
       padding: 50px;
    }
 
+   .testimonials-carousel {
+      height: 500px;
+      margin-top: 80px;
+
+      .testimony-wrapper {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+   }
+
    .top-selling {
       margin-bottom: 50px;
    }

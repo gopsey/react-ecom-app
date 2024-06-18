@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Grid, Divider, Stack } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Divider from '@mui/material/Divider'
+import Stack from '@mui/material/Stack'
 import CommonButton from '../../form/CommonButton'
 import homebanner from '../../../assets/svg/homebanner.svg'
 import homestar from '../../../assets/svg/homestar.svg'

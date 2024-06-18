@@ -1,0 +1,57 @@
+.carousel-wrapper {
+   position: absolute;
+   left: 0;
+   right: 0;
+   overflow-x: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 50px 0;
+   margin-top: 110px;
+
+   .carousel {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      width: 95%;
+      gap: 20px;
+
+      .slide-item {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         flex: 0 0 26%;
+         height: 240px;
+         border: 1px solid rgba(0, 0, 0, .1);
+         border-radius: 20px;
+         padding: 28px 32px;
+
+         .testimonial-name {
+            display: flex;
+            gap: 5px;
+            font-size: 20px;
+            font-weight: 700;
+
+            .verified {
+               color: #01AB31;
+            }
+         }
+      }
+
+      .slide-item:first-child,
+      .slide-item:last-child {
+         filter: blur(2px);
+      }
+   }
+}
+
+.carousel-actions {
+   display: flex;
+   gap: 20px;
+
+   .left-arrow,
+   .right-arrow {
+      cursor: pointer;
+
+   }
+}
