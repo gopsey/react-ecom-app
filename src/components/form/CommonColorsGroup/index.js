@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import './CommonColorsGroup.scss'
 
@@ -12,6 +12,10 @@ const CommonColorsGroup = (props) => {
       setUpdatedButtonsList(newUpdatedButtonsList)
    }
 
+   useEffect(() => {
+      setUpdatedButtonsList(buttonsList)
+   }, [props.buttonsList])
+
    return (
       <>
          <div className='colors-wrapper'>
@@ -23,7 +27,7 @@ const CommonColorsGroup = (props) => {
                      style={{ backgroundColor: `${buttonItem.code}` }}
                      onClick={() => availableColorClickHandler(buttonItem)}
                   >
-                     {buttonItem.isSelected && <CheckIcon sx={{ color: '#FFFFFF', fontSize: '18px' }} />}
+                     {buttonItem.isSelected && <CheckIcon sx={{ color: buttonItem.code === '#FFFFFF' ? '#000000' : '#FFFFFF', fontSize: '18px' }} />}
                   </div>
                )
             }))}

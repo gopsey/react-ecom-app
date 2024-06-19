@@ -8,7 +8,8 @@ const CommonChipGroup = (props) => {
    const [updatedChipsList, setUpdatedChipsList] = useState(chipsList)
 
    useEffect(() => {
-   }, [])
+      setUpdatedChipsList(chipsList)
+   }, [props.chipsList])
 
    const chipClickHandler = (key) => {
       const chipsListToUpdate = updatedChipsList.map((chipItem) => ({ ...chipItem, isSelected: chipItem.id === key }))
@@ -19,7 +20,7 @@ const CommonChipGroup = (props) => {
    return (
       <>
          <div className='chips-wrapper'>
-            <Stack direction="row" flexWrap="true" spacing={1}>
+            <Stack direction="row" flexWrap="wrap" justifyContent="flex-start" gap="10px">
                {(updatedChipsList && updatedChipsList.map((chipItem) => {
                   return (
                      <div key={chipItem.id} >
@@ -27,7 +28,7 @@ const CommonChipGroup = (props) => {
                            label={chipItem.description}
                            style={{
                               backgroundColor: chipItem.isSelected ? '#000000' : 'rgb(240, 240, 240)',
-                              color: chipItem.isSelected ? '#FFFFFF' : '',
+                              color: chipItem.isSelected ? '#FFFFFF' : 'rgba(0, 0, 0, 0.6)',
                               borderColor: 'transparent',
                               padding: '0 10px',
                            }}

@@ -1,6 +1,8 @@
 .colors-wrapper {
    display: flex;
    gap: 12px;
+   flex-wrap: wrap;
+   justify-content: center;
 
    .color-button-item {
       width: 35px;
@@ -10,5 +12,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      border: 1px solid rgba(0, 0, 0, .2);
    }
 }

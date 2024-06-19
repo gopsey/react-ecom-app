@@ -8,5 +8,14 @@
          font-size: 32px;
          font-weight: bold;
       }
+      .data-filter-info {
+         display: flex;
+         gap: 14px;
+      }
+   }
+   .category-filter {
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-radius: 20px;
+      padding: 20px 24px;
    }
 }

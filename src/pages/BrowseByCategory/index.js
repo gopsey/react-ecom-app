@@ -22,6 +22,7 @@ const BrowseByCategory = () => {
       md: 4,
    })
    const [pageNumber, setPageNumber] = useState(1);
+   const [filterParameters, setFilterParameters] = useState({});
 
    const setCurrentPageNumber = (pageNo) => {
       setPageNumber(pageNo)
@@ -123,10 +124,107 @@ const BrowseByCategory = () => {
             category: 'new-arrivals',
          },
       ]
+      const filterParams = {
+         generalFilters: [
+            {
+               id: 'tshirts',
+               description: 'T-Shirts'
+            },
+            {
+               id: 'shorts',
+               description: 'Shorts'
+            },
+            {
+               id: 'shirts',
+               description: 'Shirts'
+            },
+            {
+               id: 'hoodie',
+               description: 'Hoodie'
+            },
+            {
+               id: 'jeans',
+               description: 'Jeans'
+            },
+         ],
+         pricesFilter: {
+            startLimit: 0,
+            endLimit: 300
+         },
+         colorsFilter: [
+            { id: '00C12B', code: '#00C12B', isSelected: false, },
+            { id: 'F50606', code: '#F50606', isSelected: false, },
+            { id: 'F5DD06', code: '#F5DD06', isSelected: false, },
+            { id: 'F57906', code: '#F57906', isSelected: false, },
+            { id: '06CAF5', code: '#06CAF5', isSelected: false, },
+            { id: '063AF5', code: '#063AF5', isSelected: false, },
+            { id: '7D06F5', code: '#7D06F5', isSelected: false, },
+            { id: 'F506A4', code: '#F506A4', isSelected: false, },
+            { id: 'FFFFFF', code: '#FFFFFF', isSelected: false, },
+            { id: '000000', code: '#000000', isSelected: false, },
+         ],
+         sizesFilter: [
+            {
+               id: 'xxSmall',
+               description: 'XX-Small',
+            },
+            {
+               id: 'xSmall',
+               description: 'X-Small',
+            },
+            {
+               id: 'small',
+               description: 'Small',
+            },
+            {
+               id: 'medium',
+               description: 'Medium',
+            },
+            {
+               id: 'large',
+               description: 'Large',
+            },
+            {
+               id: 'xLarge',
+               description: 'X-Large',
+            },
+            {
+               id: 'xxLarge',
+               description: 'XX-Large',
+            },
+            {
+               id: 'xxxLarge',
+               description: '3X-Large',
+            },
+            {
+               id: 'xxxxLarge',
+               description: '4X-Large',
+            },
+         ],
+         dressStyleFilter: [
+            {
+               id: 'casual',
+               description: 'Casual'
+            },
+            {
+               id: 'formal',
+               description: 'Formal'
+            },
+            {
+               id: 'party',
+               description: 'Party'
+            },
+            {
+               id: 'gym',
+               description: 'Gym'
+            },
+         ]
+      }
       // Make API call here with pathname as req and update response accordingly
       if (urlParam?.pathname === '/casual') {
          setProductsList(listOfProducts)
       }
+      setFilterParameters(filterParams)
    }, [urlParam])
 
    // Trigger http call when pagination changes from child
@@ -140,14 +238,16 @@ const BrowseByCategory = () => {
             <Divider variant='fullWidth' />
             <Grid container className='category-main' spacing={2}>
                <Grid item xs={12} sm={12} md={3}>
-                  <CategoryFilter />
+                  <div className='category-filter'>
+                     <CategoryFilter filterParameters={filterParameters} />
+                  </div>
                </Grid>
                <Grid item xs={12} sm={12} md={9}>
                   <Stack direction='row' className='category-actions' alignItems='center'>
                      <div>
                         <span className='category-title'>Casual</span>
                      </div>
-                     <div>
+                     <div className='data-filter-info'>
                         <span>Showing 1-10 of 100 Products</span>
                         <span>Sort by: Most popular V</span>
                      </div>

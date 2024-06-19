@@ -25,7 +25,7 @@ const ProductDetails = () => {
    const [selectedColorItem, setSelectedColorItem] = useState('')
    const [selectedSizeItem, setSelectedSizeItem] = useState('')
    const [currentCountValue, setCurrentCountValue] = useState(0)
-   const [addToCardButtonProps] = useState({
+   const [addToCartButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Add to Cart', color: '#FFFFFF'
    })
    const [newArrivals, setNewArrivals] = useState([]);
@@ -49,9 +49,9 @@ const ProductDetails = () => {
             { id: 'extraLarge', description: 'X-Large', isSelected: false }
          ],
          availableColors: [
-            { id: 'green', code: '#314F4A', isSelected: true },
-            { id: 'brown', code: '#4F4631', isSelected: false },
-            { id: 'violet', code: '#31344F', isSelected: false },
+            { id: '314F4A', code: '#314F4A', isSelected: true },
+            { id: '4F4631', code: '#4F4631', isSelected: false },
+            { id: '31344F', code: '#31344F', isSelected: false },
          ],
          title: 'T-Shirt with tape details',
          rating: 4.5,
@@ -172,7 +172,7 @@ const ProductDetails = () => {
                               <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} />
                            </div>
                            <div className='cart-button-wrapper'>
-                              <CommonButton {...addToCardButtonProps} />
+                              <CommonButton {...addToCartButtonProps} />
                            </div>
                         </div>
                      </div>
