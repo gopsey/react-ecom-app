@@ -1,0 +1,50 @@
+.filter-wrapper {
+   display: flex;
+   flex-direction: column;
+
+   .filter-category {
+      .filter-category-title {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 24px;
+
+         .filter-icon {
+            rotate: 90deg;
+            color: rgba(0, 0, 0, .6);
+            cursor: pointer;
+         }
+      }
+
+      .category-title {
+         font-size: 20px;
+         font-weight: 600;
+      }
+
+      .filter-items {
+         display: flex;
+         flex-direction: column;
+         padding: 24px 0;
+
+         .filter-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(0, 0, 0, .6);
+            cursor: pointer;
+         }
+      }
+
+      .filter-items.accordion-content {
+         padding-top: 0;
+      }
+
+      .colors-filter {
+         .available-colors {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+         }
+      }
+   }
+}
