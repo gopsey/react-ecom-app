@@ -22,8 +22,8 @@ Breadcrumb navigation - 1 day\
 View Product - 1 day Done in 2 days\
 Tab navigation for View Product - 1 day\
 Category page 3x3 grid view - 2 days Done in 1 day\
-Category page Filters - 2 days\
-Cart list and overall summary - 2 days\
+Category page Filters - 2 days Done in 1 day\
+Cart list and overall summary - 2 days Done in 1 day\
 Success page - 1 day\
 Full page responsiveness - 2 days
 

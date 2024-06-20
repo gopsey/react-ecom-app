@@ -74,7 +74,7 @@
 
             .footer-link {
                text-decoration: none;
-               color: inherit;
+               color: rgba(0, 0, 0, .6);
                cursor: pointer;
             }
          }
@@ -84,6 +84,7 @@
 
             .logo-text {
                width: 75%;
+               color: rgba(0, 0, 0, .6);
             }
 
             .social-links {
@@ -99,6 +100,26 @@
          .footer-link-title {
             text-transform: uppercase;
             font-weight: 600;
+         }
+      }
+
+      .footer-end {
+         display: flex;
+         justify-content: space-between;
+
+         .copyright {
+            color: rgba(0, 0, 0, .6);
+         }
+
+         .payment-options {
+            display: flex;
+            gap: 10px;
+
+            .vendor {
+               padding: 6px 10px;
+               background-color: #FFFFFF;
+               border-radius: 6px;
+            }
          }
       }
    }

@@ -1,6 +1,6 @@
 import './Header.scss'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
@@ -14,6 +14,9 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 
 const Header = () => {
    const [headersList, setHeadersList] = useState([])
+   const navigate = useNavigate()
+   const navigateToCart = () => navigate('/cart')
+
    // On Init
    useEffect(() => {
       const headers = ['Shop', 'On Sale', 'New Arrivals', 'Brands']
@@ -23,7 +26,7 @@ const Header = () => {
    return (
       <AppBar position='static' color='inherit' elevation={0}>
          <Container maxWidth='xl'>
-            <Toolbar>
+            <Toolbar style={{ padding: 0 }}>
                <Link to='/' className='app-icon'>Shop.co</Link>
                <Box flexGrow='1' display={{ xs: 'none', md: 'flex' }} marginLeft='40px'>
                   {
@@ -40,11 +43,11 @@ const Header = () => {
                   <InputBase placeholder='Search for products...' className='search-input' ></InputBase>
                </div>
                <Box className='header-actions'>
-                  <IconButton>
-                     <ShoppingCartOutlinedIcon />
+                  <IconButton onClick={navigateToCart}>
+                     <ShoppingCartOutlinedIcon sx={{ color: '#000000' }} />
                   </IconButton>
                   <IconButton>
-                     <AccountCircleOutlinedIcon />
+                     <AccountCircleOutlinedIcon sx={{ color: '#000000' }} />
                   </IconButton>
                </Box>
             </Toolbar>

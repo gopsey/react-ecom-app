@@ -10,6 +10,11 @@ import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CommonButton from "../../form/CommonButton";
+import ApplePay from '../../../assets/svg/ApplePay.svg'
+import GPay from '../../../assets/svg/GPay.svg'
+import Mastercard from '../../../assets/svg/Mastercard.svg'
+import Paypal from '../../../assets/svg/Paypal.svg'
+import Visa from '../../../assets/svg/Visa.svg'
 import './Footer.scss'
 
 const Footer = () => {
@@ -27,7 +32,8 @@ const Footer = () => {
                 <InputAdornment position='start'>
                   <MailOutlineIcon />
                 </InputAdornment>
-              } />
+              }
+            />
             <div className='button-subscribe'>
               <CommonButton
                 variant='outlined'
@@ -80,7 +86,16 @@ const Footer = () => {
             </div>
           </div>
           <Divider />
-          <div>Copyright</div>
+          <div className='footer-end'>
+            <div className='copyright'>Shop.co &copy; 2000-2024, All Rights Reserved</div>
+            <div className='payment-options'>
+              <div className='vendor'><img src={ApplePay} alt="" /></div>
+              <div className='vendor'><img src={GPay} alt="" /></div>
+              <div className='vendor'><img src={Mastercard} alt="" /></div>
+              <div className='vendor'><img src={Paypal} alt="" /></div>
+              <div className='vendor'><img src={Visa} alt="" /></div>
+            </div>
+          </div>
         </Container>
       </div>
     </>
