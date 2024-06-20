@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d462df43.css",
-    "main.js": "/static/js/main.1a2426cd.js",
+    "main.css": "/static/css/main.662961b6.css",
+    "main.js": "/static/js/main.aa7cf13c.js",
     "static/js/453.b636c0af.chunk.js": "/static/js/453.b636c0af.chunk.js",
     "static/media/homebanner.svg": "/static/media/homebanner.f950b728f4961887c892c1cbeee6bf4a.svg",
     "static/media/shirt1.svg": "/static/media/shirt1.607d6d72aec6d385b8a821de0a70b0f1.svg",
@@ -13,18 +13,23 @@
     "static/media/formal.svg": "/static/media/formal.0828bb27d96ff8ca870d109beda82d11.svg",
     "static/media/casual.svg": "/static/media/casual.55efda0ddf6e874cf60eff06ef797f7f.svg",
     "static/media/gucci.svg": "/static/media/gucci.86d31912305d5798606eee71f8055cc5.svg",
+    "static/media/Paypal.svg": "/static/media/Paypal.f530836737cd9f6b5af9678784eb5de7.svg",
     "static/media/versace.svg": "/static/media/versace.995da5fe902b5fb449a6bcf6989b7ef4.svg",
+    "static/media/GPay.svg": "/static/media/GPay.9d258dfda7eb87491e9d8e7c17382672.svg",
     "static/media/ck.svg": "/static/media/ck.f7755b5c5f0950030152103b67f46e55.svg",
     "static/media/prada.svg": "/static/media/prada.a5386d022fe29ee47815cd691fec13ee.svg",
+    "static/media/ApplePay.svg": "/static/media/ApplePay.e7ac94d7748d0d20df7241991c44cde1.svg",
     "static/media/zara.svg": "/static/media/zara.cbce13acf06ccaa97f3988d31158bfc8.svg",
+    "static/media/Mastercard.svg": "/static/media/Mastercard.0222b31f6465362e2118151e7d7beee4.svg",
+    "static/media/Visa.svg": "/static/media/Visa.0dda9857437b74518575f63ae40765a4.svg",
     "index.html": "/index.html",
     "static/media/homestar.svg": "/static/media/homestar.7d9d6b6dc9bec1c511d258fb336a67a5.svg",
-    "main.d462df43.css.map": "/static/css/main.d462df43.css.map",
-    "main.1a2426cd.js.map": "/static/js/main.1a2426cd.js.map",
+    "main.662961b6.css.map": "/static/css/main.662961b6.css.map",
+    "main.aa7cf13c.js.map": "/static/js/main.aa7cf13c.js.map",
     "453.b636c0af.chunk.js.map": "/static/js/453.b636c0af.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d462df43.css",
-    "static/js/main.1a2426cd.js"
+    "static/css/main.662961b6.css",
+    "static/js/main.aa7cf13c.js"
   ]
 }
