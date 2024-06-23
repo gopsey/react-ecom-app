@@ -3,6 +3,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import ProductReviews from '../ProductReviews';
 
 const TabNavigation = () => {
    const [value, setValue] = useState('1');
@@ -30,7 +31,7 @@ const TabNavigation = () => {
                Item One
             </TabPanel>
             <TabPanel value='2'>
-               Item Two
+               <ProductReviews />
             </TabPanel>
             <TabPanel value='3'>
                Item Three
