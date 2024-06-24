@@ -12,7 +12,7 @@ const ProductItem = (props) => {
                <img src={props.defaultImage} alt="" className='pdt-img' loading='lazy' />
             </div>
             <div className='product-details'>
-               <div className='product-title'>{props.title}</div>
+               <span className='product-title'>{props.title}</span>
                <div className='product-ratings'>
                   <Rating value={props.rating} precision={0.5} readOnly></Rating> <span>{props.rating}/5</span>
                </div>

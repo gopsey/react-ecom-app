@@ -1,16 +1,37 @@
+$homebanner: url('../../../assets/svg/homebannerrect.svg');
+@import '/src/App.scss';
+
 .banner-wrapper {
-   .banner-image {
-      width: 100%;
+   display: flex;
+   height: 100vh;
+
+   @include screen(small) {
+      flex-direction: column;
+      height: 100%;
    }
 
-   .banner-container {
-      position: absolute;
-      width: 100%;
+   @include screen(medium) {
+      flex-direction: column;
+      height: 100%;
+   }
+
+   .banner-main {
+      flex: 1;
+      background-color: #F2F0F1;
 
       .banner-content {
+         flex: 1;
          display: block;
-         padding-top: 100px;
-         padding-left: 100px;
+         padding-top: 10%;
+         padding-left: 16%;
+
+         @include screen(small) {
+            padding: 6% 4% 0 4%;
+         }
+
+         @include screen(medium) {
+            padding: 6% 4% 0 4%;
+         }
 
          .banner-title {
             display: block;
@@ -21,6 +42,14 @@
             max-width: 500px;
             user-select: none;
             margin-bottom: 15px;
+
+            @include screen(small) {
+               font-size: 36px;
+            }
+
+            @include screen(medium) {
+               font-size: 36px;
+            }
          }
 
          .banner-subtext {
@@ -34,6 +63,16 @@
          .banner-details {
             justify-content: space-between;
             margin-top: 50px;
+
+            @include screen(small) {
+               flex-wrap: wrap;
+               justify-content: center;
+            }
+
+            @include screen(medium) {
+               flex-wrap: wrap;
+               justify-content: center;
+            }
 
             .banner-detail {
                display: grid;
@@ -49,26 +88,55 @@
                }
             }
          }
+
          .banner-shop-now {
             width: 210px;
+
+            @include screen(small) {
+               margin: 0 auto;
+               width: 100%;
+            }
+
+            @include screen(medium) {
+               margin: 0 auto;
+               width: 50%;
+            }
          }
       }
+   }
 
-      .banner-extra-images {
+   .banner-image-wrapper {
+      flex: 1;
+      background-color: #F2F0F1;
+
+      .banner-image {
+         background-image: $homebanner;
+         background-size: cover;
+         background-position: center;
+         height: 135vh;
          position: relative;
+         display: flex;
+
+         @include screen(small) {
+            height: 500px;
+         }
+
+         @include screen(medium) {
+            height: 500px;
+         }
 
          .banner-star-left {
-            position: absolute;
-            left: 40px;
-            top: 300px;
+            flex: 1;
+            margin-top: 30%;
             width: 56px;
+            height: 56px;
          }
 
          .banner-star-right {
-            position: absolute;
-            top: 100px;
-            right: 100px;
+            flex: 1;
+            margin-top: 10%;
             width: 104px;
+            height: 104px;
          }
       }
    }

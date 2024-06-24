@@ -1,9 +1,20 @@
+@import '/src/App.scss';
+
 .product-wrapper {
    cursor: pointer;
 
    .product-image .pdt-img {
+      width: 40ch;
       border-radius: 20px;
       cursor: pointer;
+
+      @include screen(small) {
+         width: 20ch;
+      }
+
+      @include screen(medium) {
+         width: 20ch;
+      }
    }
 
    .product-details {
@@ -38,6 +49,11 @@
       .product-title {
          font-size: 20px;
          font-weight: 600;
+         width: 80%;
+         text-overflow: ellipsis;
+         overflow: hidden;
+         white-space: nowrap;
+         display: inline-block;
       }
    }
 }

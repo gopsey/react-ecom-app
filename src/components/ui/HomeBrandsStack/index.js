@@ -5,6 +5,7 @@ import zara from "../../../assets/svg/zara.svg"
 import gucci from "../../../assets/svg/gucci.svg"
 import prada from "../../../assets/svg/prada.svg"
 import ck from "../../../assets/svg/ck.svg"
+import './HomeBrandsStack.scss'
 
 const HomeBrandsStack = () => {
    const [brandLogos] = useState([versace, zara, gucci, prada, ck])
@@ -13,8 +14,6 @@ const HomeBrandsStack = () => {
          <Stack
             direction='row'
             spacing={2}
-            alignItems='center'
-            justifyContent='space-evenly'
             className='brand-logos-stack'
          >
             {

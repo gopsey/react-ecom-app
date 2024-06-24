@@ -1,41 +1,99 @@
-.app-icon {
-   text-transform: uppercase;
-   font-size: 32px;
-   font-weight: 800;
-   color: #000000;
-   cursor: pointer;
-   text-decoration: none;
-}
+@import '/src/App.scss';
 
-.search {
-   position: relative;
-   background-color: rgba(240, 240, 240, 1);
-   border-radius: 62px;
-   width: auto;
+.top-toolbar {
+   padding: 0;
 
-   &:hover {
-      background-color: rgba(240, 240, 240, 0.5);
+   @include screen(small) {
+      display: flex;
+      justify-content: space-between;
    }
 
-   .search-icon-wrapper {
-      position: absolute;
+   @include screen(medium) {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-left: 15px;
-      padding-top: 10px;
+      justify-content: space-between;
+   }
 
-      .search-icon {
-         color: rgba(0, 0, 0, .4);
+   .app-icon {
+      text-transform: uppercase;
+      font-size: 32px;
+      font-weight: 800;
+      color: #000000;
+      cursor: pointer;
+      text-decoration: none;
+   }
+
+   .header-links {
+      display: flex;
+      margin-left: 40px;
+      flex-grow: 1;
+
+      @include screen(small) {
+         display: none;
+      }
+
+      @include screen(medium) {
+         display: none;
       }
    }
 
-   .search-input {
-      padding: 6px 6px 6px 50px;
-      width: 60ch;
-   }
-}
+   .search {
+      position: relative;
+      background-color: rgba(240, 240, 240, 1);
+      border-radius: 62px;
+      flex-grow: 1;
 
-.header-actions {
-   margin-left: 20px;
+      &:hover {
+         background-color: rgba(240, 240, 240, 0.5);
+      }
+
+      .search-icon-wrapper {
+         position: absolute;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding-left: 15px;
+         padding-top: 10px;
+
+         .search-icon {
+            color: rgba(0, 0, 0, .4);
+         }
+      }
+
+      .search-input {
+         padding: 6px 6px 6px 50px;
+      }
+
+      @include screen(small) {
+         display: none;
+      }
+
+      @include screen(medium) {
+         display: none;
+      }
+   }
+
+   .header-actions {
+      margin-left: 20px;
+      display: flex;
+      .responsive-search-icon {
+         display: none;
+         @include screen(small) {
+            display: flex;
+         }
+   
+         @include screen(medium) {
+            display: flex;
+         }
+      }
+   }
+
+   .toolbar-icon {
+      @include screen(large) {
+         display: none;
+      }
+
+      @include screen(x-large) {
+         display: none;
+      }
+   }
 }

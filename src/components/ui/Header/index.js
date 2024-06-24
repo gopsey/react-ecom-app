@@ -9,6 +9,7 @@ import Box from '@mui/material/Box'
 import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
@@ -26,9 +27,12 @@ const Header = () => {
    return (
       <AppBar position='static' color='inherit' elevation={0}>
          <Container maxWidth='xl'>
-            <Toolbar style={{ padding: 0 }}>
+            <Toolbar className='top-toolbar'>
+               <IconButton className='toolbar-icon'>
+                  <MenuIcon sx={{ color: '#000000' }} />
+               </IconButton>
                <Link to='/' className='app-icon'>Shop.co</Link>
-               <Box flexGrow='1' display={{ xs: 'none', md: 'flex' }} marginLeft='40px'>
+               <Box className='header-links'>
                   {
                      headersList.map((header) => {
                         return <Button key={header}
@@ -43,6 +47,9 @@ const Header = () => {
                   <InputBase placeholder='Search for products...' className='search-input' ></InputBase>
                </div>
                <Box className='header-actions'>
+                  <IconButton className='responsive-search-icon'>
+                     <SearchIcon sx={{ color: '#000000' }} />
+                  </IconButton>
                   <IconButton onClick={navigateToCart}>
                      <ShoppingCartOutlinedIcon sx={{ color: '#000000' }} />
                   </IconButton>

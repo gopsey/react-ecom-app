@@ -1,0 +1,29 @@
+$breakpoint-small: 480px;
+$breakpoint-medium: 780px;
+$breakpoint-large: 1445px;
+
+@mixin screen($breakpoint) {
+   @if $breakpoint ==small {
+      @media (max-width: $breakpoint-small) {
+         @content;
+      }
+   }
+
+   @else if $breakpoint ==medium {
+      @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+         @content;
+      }
+   }
+
+   @else if $breakpoint ==large {
+      @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+         @content;
+      }
+   }
+
+   @else if $breakpoint ==x-large {
+      @media (min-width: $breakpoint-large) {
+         @content;
+      }
+   }
+}

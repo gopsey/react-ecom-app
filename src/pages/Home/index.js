@@ -22,11 +22,6 @@ import './Home.scss';
 const Home = () => {
    const [newArrivals, setNewArrivals] = useState([]);
    const [masonryGridProps, setMasonryGridProps] = useState([]);
-   const [gridProperties] = useState({
-      xs: 6,
-      sm: 6,
-      md: 3,
-   })
    const [testimonialsData] = useState([
       {
          id: 1,
@@ -185,7 +180,7 @@ const Home = () => {
          <Container maxWidth='xl' className='container'>
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
-               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
+               <ProductsGrid products={newArrivals}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton
@@ -202,7 +197,7 @@ const Home = () => {
 
             <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
-               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
+               <ProductsGrid products={newArrivals}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton
