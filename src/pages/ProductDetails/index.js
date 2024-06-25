@@ -30,9 +30,7 @@ const ProductDetails = () => {
    })
    const [newArrivals, setNewArrivals] = useState([]);
    const [gridProperties] = useState({
-      xs: 6,
-      sm: 6,
-      md: 3,
+      flexWrap: 'nowrap'
    })
 
    // On init
@@ -59,6 +57,23 @@ const ProductDetails = () => {
          previousPrice: '$260',
          discount: '20%',
          category: 'new-arrivals',
+         productInformationData: {
+            productDescription: 'This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.',
+            productFaqs: [
+               {
+                  question: 'Is this a reliable product?',
+                  answer: 'Yes, this is a reliable product',
+               },
+               {
+                  question: 'Is return policy available',
+                  answer: 'Yes, you can return in 7 days',
+               },
+               {
+                  question: 'Is refund available?',
+                  answer: 'No refund, you can return and get different size',
+               },
+            ]
+         }
       }
       const newArrivals = [
          {
@@ -180,7 +195,7 @@ const ProductDetails = () => {
                </Grid>
             }
             <section className='tabs-section'>
-               <TabNavigation />
+               <TabNavigation productDataInput={productData} />
             </section>
             <section className='suggestion-section'>
                <div className='section-title'>You might also like</div>

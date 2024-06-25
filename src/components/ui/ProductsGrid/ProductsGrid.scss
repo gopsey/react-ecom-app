@@ -18,6 +18,16 @@
       justify-content: flex-start;
    }
 
+   .product-item {
+      @include screen(small) {
+         width: 50%;
+      }
+
+      @include screen(medium) {
+         width: 50%;
+      }
+   }
+
    .product-link {
       text-decoration: none;
       color: inherit;

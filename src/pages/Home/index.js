@@ -87,6 +87,9 @@ const Home = () => {
          isVerified: false,
       },
    ])
+   const [gridProperties] = useState({
+      flexWrap: 'nowrap'
+   })
    const [prevSlide, setPrevSlide] = useState(false);
    const [nextSlide, setNextSlide] = useState(false);
 
@@ -140,6 +143,7 @@ const Home = () => {
             gridText: 'Casual',
             gridImage: casual,
             routeLink: '/casual',
+            xs: 12,
             sm: 12,
             lg: 4,
          },
@@ -147,6 +151,7 @@ const Home = () => {
             gridText: 'Formal',
             gridImage: formal,
             routeLink: '/formal',
+            xs: 12,
             sm: 12,
             lg: 8,
          },
@@ -154,6 +159,7 @@ const Home = () => {
             gridText: 'Party',
             gridImage: party,
             routeLink: '/party',
+            xs: 12,
             sm: 12,
             lg: 8,
          },
@@ -161,6 +167,7 @@ const Home = () => {
             gridText: 'Gym',
             gridImage: gym,
             routeLink: '/gym',
+            xs: 12,
             sm: 12,
             lg: 4,
          },
@@ -180,7 +187,7 @@ const Home = () => {
          <Container maxWidth='xl' className='container'>
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
-               <ProductsGrid products={newArrivals}></ProductsGrid>
+               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton
@@ -197,7 +204,7 @@ const Home = () => {
 
             <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
-               <ProductsGrid products={newArrivals}></ProductsGrid>
+               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton

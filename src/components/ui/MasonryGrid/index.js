@@ -11,11 +11,10 @@ const MasonryGrid = ({ masonryGridProps }) => {
             {
                masonryGridProps.map((gridProp) => {
                   return (
-                     <Grid item sm={gridProp.sm} lg={gridProp.lg} key={gridProp.gridText}>
+                     <Grid item xs={gridProp.xs} sm={gridProp.sm} lg={gridProp.lg} key={gridProp.gridText}>
                         <Link to={gridProp.routeLink} className='grid-link'>
-                           <div className='grid-wrapper'>
+                           <div className='grid-wrapper' style={{ backgroundImage: `url(${gridProp.gridImage})` }}>
                               <span className='grid-text'>{gridProp.gridText}</span>
-                              <img src={gridProp.gridImage} alt="" loading='lazy' />
                            </div>
                         </Link>
                      </Grid>

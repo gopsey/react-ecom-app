@@ -1,7 +1,6 @@
 @import '/src/App.scss';
 
 .top-toolbar {
-   padding: 0;
 
    @include screen(small) {
       display: flex;
@@ -75,12 +74,14 @@
    .header-actions {
       margin-left: 20px;
       display: flex;
+
       .responsive-search-icon {
          display: none;
+
          @include screen(small) {
             display: flex;
          }
-   
+
          @include screen(medium) {
             display: flex;
          }

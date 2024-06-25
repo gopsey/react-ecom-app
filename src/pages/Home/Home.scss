@@ -1,3 +1,5 @@
+@import '/src/App.scss';
+
 .container {
    .home-section {
       display: flex;
@@ -10,6 +12,16 @@
          text-transform: uppercase;
          font-size: 48px;
          font-weight: bold;
+
+         @include screen(small) {
+            font-size: 32px;
+            text-align: center;
+         }
+
+         @include screen(medium) {
+            font-size: 32px;
+            text-align: center;
+         }
       }
 
       .button-view-wrapper {
@@ -55,6 +67,14 @@
    min-height: 120px;
    display: grid;
    margin-bottom: 50px;
+
+   @include screen(small) {
+      margin-bottom: 100px;
+   }
+
+   @include screen(medium) {
+      margin-bottom: 100px;
+   }
 }
 
 .home-section.home-banner {

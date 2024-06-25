@@ -1,3 +1,5 @@
+@import '/src/App.scss';
+
 .carousel-wrapper {
    position: absolute;
    left: 0;
@@ -21,10 +23,18 @@
          flex-direction: column;
          gap: 10px;
          flex: 0 0 26%;
-         height: 240px;
+         height: auto;
          border: 1px solid rgba(0, 0, 0, .1);
          border-radius: 20px;
          padding: 28px 32px;
+
+         @include screen(small) {
+            flex: 0 0 80%;
+         }
+
+         @include screen(medium) {
+            flex: 0 0 80%;
+         }
 
          .testimonial-name {
             display: flex;

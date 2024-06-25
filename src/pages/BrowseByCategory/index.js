@@ -4,29 +4,30 @@ import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
-import './BrowseByCategory.scss'
+import TuneIcon from '@mui/icons-material/Tune';
 import ProductsGrid from '../../components/ui/ProductsGrid'
 import CategoryFilter from '../../components/ui/CategoryFilter'
 import CommonPagination from '../../components/ui/CommonPagination'
+import ModalDialog from '../../components/ui/ModalDialog'
+import CommonButton from '../../components/form/CommonButton'
 import tee1 from "../../assets/svg/tee1.svg"
 import jeans1 from "../../assets/svg/jeans1.svg"
 import shirt1 from "../../assets/svg/shirt1.svg"
 import tee2 from "../../assets/svg/tee2.svg"
+import './BrowseByCategory.scss'
 
 const BrowseByCategory = () => {
    const urlParam = useLocation()
    const [productsList, setProductsList] = useState([])
    const [gridProperties] = useState({
-      xs: 6,
-      sm: 6,
-      md: 4,
+      flexWrap: 'wrap'
+   })
+   const [productsFilterButtonProps] = useState({
+      variant: 'outlined', btnText: <TuneIcon />, color: '#000000', borderColor: 'rgba(0,0,0,0)', bgColor: 'rgb(240, 240, 240)'
    })
    const [pageNumber, setPageNumber] = useState(1);
    const [filterParameters, setFilterParameters] = useState({});
-
-   const setCurrentPageNumber = (pageNo) => {
-      setPageNumber(pageNo)
-   }
+   const [filterDialog, setfilterDialog] = React.useState(false);
 
    // On init
    useEffect(() => {
@@ -232,14 +233,31 @@ const BrowseByCategory = () => {
       console.log('currentPageNumber: ', pageNumber)
    }, [pageNumber])
 
+   const setCurrentPageNumber = (pageNo) => {
+      setPageNumber(pageNo)
+   }
+
+   const onFilterApply = (filterValues) => {
+      console.log(filterValues)
+      filterDialogClose()
+   }
+
+   const filterDialogClose = () => {
+      setfilterDialog(false)
+   }
+
+   const openFilterDialog = () => {
+      setfilterDialog(true)
+   }
+
    return (
       <>
          <Container maxWidth='xl'>
             <Divider variant='fullWidth' />
             <Grid container className='category-main' spacing={2}>
-               <Grid item xs={12} sm={12} md={3}>
+               <Grid item xs={12} sm={12} md={3} className='filter-component'>
                   <div className='category-filter'>
-                     <CategoryFilter filterParameters={filterParameters} />
+                     <CategoryFilter filterParameters={filterParameters} onFilterApply={onFilterApply} />
                   </div>
                </Grid>
                <Grid item xs={12} sm={12} md={9}>
@@ -248,8 +266,14 @@ const BrowseByCategory = () => {
                         <span className='category-title'>Casual</span>
                      </div>
                      <div className='data-filter-info'>
-                        <span>Showing 1-10 of 100 Products</span>
-                        <span>Sort by: Most popular V</span>
+                        <span className='count-products'>Showing 1-10 of 100 Products</span>
+                        <span className='sort-products'>Sort by: Most popular V</span>
+                        <div className='products-filter-button'>
+                           <CommonButton {...productsFilterButtonProps} onButtonClick={openFilterDialog} />
+                        </div>
+                        <ModalDialog currentState={filterDialog} handleClose={filterDialogClose}>
+                           <CategoryFilter filterParameters={filterParameters} onFilterApply={onFilterApply} />
+                        </ModalDialog>
                      </div>
                   </Stack>
                   <ProductsGrid products={productsList} gridProperties={gridProperties} className='products-grid' />

@@ -5,15 +5,14 @@ import Stack from '@mui/material/Stack'
 import ProductItem from '../../../components/ui/ProductItem'
 import './ProductsGrid.scss'
 
-const ProductsGrid = ({ products }) => {
+const ProductsGrid = ({ products, gridProperties }) => {
    return (
       <>
-         <Stack direction='row' container className='products-wrapper' spacing={4}>
+         <Grid container className='products-wrapper' spacing={4} flexWrap={gridProperties.flexWrap}>
             {
                products.map((productItem) => {
-                  //Mobile carousel MUI to be used for mobile view
                   return (
-                     <Grid item key={productItem?.productId} >
+                     <Grid item key={productItem?.productId} className='product-item' >
                         <Link to={`${productItem?.category}/${productItem?.productId}`} className='product-link'>
                            <ProductItem {...productItem} />
                         </Link>
@@ -21,7 +20,7 @@ const ProductsGrid = ({ products }) => {
                   )
                })
             }
-         </Stack>
+         </Grid>
       </>
    )
 }

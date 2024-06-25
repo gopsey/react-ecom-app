@@ -1,9 +1,19 @@
+@import '/src/App.scss';
+
 .counter-value-wrapper {
    width: 50px;
    background-color: rgb(240, 240, 240);
    display: flex;
    justify-content: center;
    align-items: center;
+
+   @include screen(small) {
+      width: 10px;
+   }
+
+   @include screen(medium) {
+      width: 10px;
+   }
 
    .counter-value {
       margin-bottom: 2px;

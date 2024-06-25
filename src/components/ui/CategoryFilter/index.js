@@ -16,12 +16,13 @@ function valuetext(value) {
    return `${value}$`;
 }
 
-const CategoryFilter = ({ filterParameters }) => {
+const CategoryFilter = ({ filterParameters, onFilterApply }) => {
    const [priceRangeValue, setPriceRangeValue] = useState([0, 300]);
    const [colorsListData, setColorsListData] = useState([])
    const [selectedColorItem, setSelectedColorItem] = useState('')
    const [sizesListData, setSizesListData] = useState([])
    const [selectedSizeItem, setSelectedSizeItem] = useState('')
+   const [filterValuesData, setFilterValuesData] = useState({})
    const [applyFilterButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Apply Filter', color: '#FFFFFF'
    })
@@ -34,6 +35,16 @@ const CategoryFilter = ({ filterParameters }) => {
       setColorsListData(filterParameters?.colorsFilter)
       setSizesListData(filterParameters?.sizesFilter)
    }, [filterParameters])
+
+   const applyFilter = () => {
+      // Setting filter values statically temporarily
+      const filterValuesObj = {
+         color: selectedColorItem,
+         size: selectedSizeItem,
+      }
+      setFilterValuesData(filterValuesObj)
+      onFilterApply(filterValuesObj)
+   }
 
    return (
       <>
@@ -129,7 +140,7 @@ const CategoryFilter = ({ filterParameters }) => {
             </div>
             <div className='filter-category'>
                <div className='apply-filter-button-wrapper'>
-                  <CommonButton {...applyFilterButtonProps} />
+                  <CommonButton {...applyFilterButtonProps} onButtonClick={applyFilter} />
                </div>
             </div>
          </div>

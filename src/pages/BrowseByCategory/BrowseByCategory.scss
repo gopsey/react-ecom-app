@@ -1,4 +1,22 @@
+@import '/src/App.scss';
+
 .category-main {
+   .filter-component {
+      @include screen(small) {
+         display: none;
+      }
+
+      @include screen(medium) {
+         display: none;
+      }
+
+      .category-filter {
+         border: 1px solid rgba(0, 0, 0, .1);
+         border-radius: 20px;
+         padding: 20px 24px;
+      }
+   }
+
    .category-actions {
       justify-content: space-between;
       align-items: center;
@@ -7,15 +25,55 @@
       .category-title {
          font-size: 32px;
          font-weight: bold;
+
+         @include screen(small) {
+            font-size: 24px;
+         }
+
+         @include screen(medium) {
+            font-size: 24px;
+         }
       }
+
+      .count-products {
+         font-size: 16px;
+         color: rgba(0, 0, 0, .6);
+
+         @include screen(small) {
+            font-size: 14px;
+         }
+
+         @include screen(medium) {
+            font-size: 14px;
+         }
+      }
+
       .data-filter-info {
          display: flex;
+         align-items: center;
          gap: 14px;
+
+         .sort-products {
+            @include screen(small) {
+               display: none;
+            }
+
+            @include screen(medium) {
+               display: none;
+            }
+         }
+
+         .products-filter-button {
+            display: none;
+
+            @include screen(small) {
+               display: flex;
+            }
+
+            @include screen(medium) {
+               display: flex;
+            }
+         }
       }
-   }
-   .category-filter {
-      border: 1px solid rgba(0, 0, 0, .1);
-      border-radius: 20px;
-      padding: 20px 24px;
    }
 }

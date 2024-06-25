@@ -1,0 +1,13 @@
+.product-information-description {
+   display: flex;
+   flex-direction: column;
+
+   .product-info-title {
+      font-size: 24px;
+      font-weight: 700;
+   }
+
+   .product-info-desc {
+      color: rgba(0, 0, 0, .6);
+   }
+}

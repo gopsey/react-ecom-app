@@ -27,7 +27,7 @@ const Header = () => {
    return (
       <AppBar position='static' color='inherit' elevation={0}>
          <Container maxWidth='xl'>
-            <Toolbar className='top-toolbar'>
+            <Toolbar className='top-toolbar' disableGutters>
                <IconButton className='toolbar-icon'>
                   <MenuIcon sx={{ color: '#000000' }} />
                </IconButton>

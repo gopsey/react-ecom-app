@@ -1,5 +1,15 @@
+@import '/src/App.scss';
+
 .product-details {
    .product-images-wrapper {
+      @include screen(small) {
+         flex-direction: column-reverse;
+      }
+
+      @include screen(medium) {
+         flex-direction: column-reverse;
+      }
+
       .product-images {
          .pdt-img {
             border-radius: 20px;
@@ -96,5 +106,13 @@
       text-transform: uppercase;
       font-size: 48px;
       font-weight: bold;
+
+      @include screen(small) {
+         font-size: 32px;
+      }
+
+      @include screen(medium) {
+         font-size: 32px;
+      }
    }
 }
