@@ -13,7 +13,7 @@ const ProductsGrid = ({ products, gridProperties }) => {
                products.map((productItem) => {
                   return (
                      <Grid item key={productItem?.productId} className='product-item' >
-                        <Link to={`${productItem?.category}/${productItem?.productId}`} className='product-link'>
+                        <Link to={`/${productItem?.category}/${productItem?.productId}`} className='product-link'>
                            <ProductItem {...productItem} />
                         </Link>
                      </Grid>

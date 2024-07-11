@@ -5,12 +5,12 @@ import './TestimonialCarousel.scss'
 
 const TestimonialCarousel = ({ slidesData, prevSlide, nextSlide }) => {
    const [currentIndex, setCurrentIndex] = useState(0);
-   const slidesLength = slidesData.length;
+   const slidesLength = slidesData?.length;
    const [updatedSlidesData, setUpdatedSlidesData] = useState([])
 
    useEffect(() => {
-      setUpdatedSlidesData(slidesData.slice(0, 5))
-   }, [])
+      slidesData ? setUpdatedSlidesData(slidesData.slice(0, 5)) : setUpdatedSlidesData(null)
+   }, [slidesData])
    useEffect(() => {
       goToPrevSlide();
    }, [prevSlide])
@@ -19,29 +19,29 @@ const TestimonialCarousel = ({ slidesData, prevSlide, nextSlide }) => {
    }, [nextSlide])
 
    const goToPrevSlide = () => {
-      const currIndex = currentIndex - 3 < 0 ? (slidesLength - (3 - currentIndex)) : currentIndex - 3;
-      setCurrentIndex(currIndex)
-      let abc = [];
-      for (let index = 0; index < 5; index++) {
-         const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
-         abc.push(val)
+      if (slidesData) {
+         const currIndex = currentIndex - 3 < 0 ? (slidesLength - (3 - currentIndex)) : currentIndex - 3;
+         setCurrentIndex(currIndex)
+         let abc = [];
+         for (let index = 0; index < 5; index++) {
+            const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
+            abc.push(val)
+         }
+         setUpdatedSlidesData(abc);
       }
-      setUpdatedSlidesData(abc);
    }
 
    const goToNextSlide = () => {
-      const currIndex = currentIndex + 3 >= slidesLength ? ((currentIndex + 3) - slidesLength) : currentIndex + 3;
-      setCurrentIndex(currIndex)
-      let abc = [];
-      for (let index = 0; index < 5; index++) {
-         const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
-         abc.push(val)
+      if (slidesData) {
+         const currIndex = currentIndex + 3 >= slidesLength ? ((currentIndex + 3) - slidesLength) : currentIndex + 3;
+         setCurrentIndex(currIndex)
+         let abc = [];
+         for (let index = 0; index < 5; index++) {
+            const val = currIndex + index >= slidesLength ? slidesData[(currIndex + index) - slidesLength] : slidesData[currIndex + index]
+            abc.push(val)
+         }
+         setUpdatedSlidesData(abc);
       }
-      setUpdatedSlidesData(abc);
-   }
-
-   if (!Array.isArray(slidesData) || slidesLength <= 0) {
-      return;
    }
 
    return (
@@ -49,7 +49,7 @@ const TestimonialCarousel = ({ slidesData, prevSlide, nextSlide }) => {
          <div className='carousel-wrapper'>
             <div className='carousel'>
                {
-                  updatedSlidesData.map((slide, index) => {
+                  updatedSlidesData && updatedSlidesData.map((slide, index) => {
                      return (
                         <div className='slide-item' key={index}>
                            <Rating name="testimonial-rating" value={slide.rating} precision={0.5} readOnly />

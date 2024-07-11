@@ -39,3 +39,10 @@ services\
 context\
 utils\
 assets
+
+## Additional Tools used
+axios (for making http calls)
+tanstack/react-query (for managing state related to http responses)
+dotenv (for maintaining common environment config file)
+Render (for deploying nodejs app to production)
+Mongodb Atlas (for running mongo server on cloud)

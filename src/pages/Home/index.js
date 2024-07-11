@@ -9,6 +9,7 @@ import HomeBrandsStack from '../../components/ui/HomeBrandsStack'
 import ProductsGrid from '../../components/ui/ProductsGrid'
 import TestimonialCarousel from '../../components/ui/TestimonialCarousel'
 import CommonButton from '../../components/form/CommonButton'
+import { useTestimonials } from '../../hooks/useTestimonials';
 import tee1 from "../../assets/svg/tee1.svg"
 import jeans1 from "../../assets/svg/jeans1.svg"
 import shirt1 from "../../assets/svg/shirt1.svg"
@@ -22,76 +23,13 @@ import './Home.scss';
 const Home = () => {
    const [newArrivals, setNewArrivals] = useState([]);
    const [masonryGridProps, setMasonryGridProps] = useState([]);
-   const [testimonialsData] = useState([
-      {
-         id: 1,
-         rating: 5,
-         reviewerName: 'Alex K',
-         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-         isVerified: true,
-      },
-      {
-         id: 2,
-         rating: 4,
-         reviewerName: 'Sarah K',
-         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-         isVerified: true,
-      },
-      {
-         id: 3,
-         rating: 3,
-         reviewerName: 'Samuel K',
-         testimonyText: 'As someone who\'s always on the lookout for unique fashion pieces, I\'m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.',
-         isVerified: true,
-      },
-      {
-         id: 4,
-         rating: 4.5,
-         reviewerName: 'Scarlett',
-         testimonyText: 'I\'m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I\'ve bought has exceeded my expectations.',
-         isVerified: true,
-      },
-      {
-         id: 5,
-         rating: 4,
-         reviewerName: 'John K',
-         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-         isVerified: true,
-      },
-      {
-         id: 6,
-         rating: 5,
-         reviewerName: 'Jacob Z',
-         testimonyText: 'As someone who\'s always on the lookout for unique fashion pieces, I\'m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.',
-         isVerified: false,
-      },
-      {
-         id: 7,
-         rating: 1,
-         reviewerName: 'Max O',
-         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-         isVerified: false,
-      },
-      {
-         id: 8,
-         rating: 2,
-         reviewerName: 'Kenny I',
-         testimonyText: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-         isVerified: true,
-      },
-      {
-         id: 9,
-         rating: 3.5,
-         reviewerName: 'Zorro M',
-         testimonyText: 'I\'m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I\'ve bought has exceeded my expectations.',
-         isVerified: false,
-      },
-   ])
    const [gridProperties] = useState({
       flexWrap: 'nowrap'
    })
    const [prevSlide, setPrevSlide] = useState(false);
    const [nextSlide, setNextSlide] = useState(false);
+
+   const { data } = useTestimonials()
 
    // On Init
    useEffect(() => {
@@ -227,7 +165,7 @@ const Home = () => {
                      <EastIcon className='right-arrow' onClick={() => setNextSlide(!nextSlide)} />
                   </div>
                </div>
-               <TestimonialCarousel slidesData={testimonialsData} prevSlide={prevSlide} nextSlide={nextSlide} />
+               <TestimonialCarousel slidesData={data} prevSlide={prevSlide} nextSlide={nextSlide} />
             </section>
          </Container>
       </>

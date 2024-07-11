@@ -85,7 +85,7 @@ const ProductDetails = () => {
             currentPrice: '$120',
             previousPrice: null,
             discount: null,
-            category: 'new-arrivals',
+            category: 'casual',
          }, {
             productId: 99872,
             defaultImage: jeans1,
@@ -95,7 +95,7 @@ const ProductDetails = () => {
             currentPrice: '$240',
             previousPrice: null,
             discount: null,
-            category: 'new-arrivals',
+            category: 'casual',
          }, {
             productId: 99873,
             defaultImage: shirt1,
@@ -105,7 +105,7 @@ const ProductDetails = () => {
             currentPrice: '$180',
             previousPrice: '$260',
             discount: '20%',
-            category: 'new-arrivals',
+            category: 'casual',
          }, {
             productId: 99874,
             defaultImage: tee2,
@@ -115,7 +115,7 @@ const ProductDetails = () => {
             currentPrice: '$130',
             previousPrice: null,
             discount: null,
-            category: 'new-arrivals',
+            category: 'casual',
          },
       ]
       // Make API call here with pathname as req and update response accordingly

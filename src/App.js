@@ -11,7 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path='/' exact element={<Layout />}>
             <Route index element={<Home />} />
             <Route path='/:category' element={<BrowseByCategory />} />
             <Route path='/:category/:product' element={<ProductDetails />} />
