@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
@@ -17,9 +17,11 @@ import CommonButton from '../../components/form/CommonButton'
 import CounterButtonGroup from '../../components/form/CounterButtonGroup'
 import ProductsGrid from '../../components/ui/ProductsGrid'
 import TabNavigation from '../../components/ui/TabNavigation'
+import { useProductById } from '../../hooks/useProducts'
 
 const ProductDetails = () => {
    const urlParam = useLocation()
+   const urlParams = useParams()
    const [productData, setProductData] = useState(null)
    const [enlargedImage, setEnlargedImage] = useState('')
    const [selectedColorItem, setSelectedColorItem] = useState('')
@@ -32,6 +34,8 @@ const ProductDetails = () => {
    const [gridProperties] = useState({
       flexWrap: 'nowrap'
    })
+
+   const { data: productDataById } = useProductById(urlParams.product);
 
    // On init
    useEffect(() => {
@@ -131,7 +135,7 @@ const ProductDetails = () => {
          <Container maxWidth='xl'>
             <Divider variant='fullWidth' />
             {
-               productData &&
+               productData && productDataById &&
                <Grid container className='product-details' spacing={2}>
                   <Grid item xs={12} sm={12} md={6}>
                      <Grid container className='product-images-wrapper' spacing={2}>
@@ -156,9 +160,9 @@ const ProductDetails = () => {
                   </Grid>
                   <Grid item xs={12} sm={12} md={6}>
                      <div className='product-details-info'>
-                        <div className='product-title'>{productData.title}</div>
+                        <div className='product-title'>{productDataById.name}</div>
                         <div className='product-ratings'>
-                           <Rating value={productData.rating} precision={0.5} readOnly></Rating> <span>{productData.rating}/5</span>
+                           <Rating value={productDataById.rating} precision={0.5} readOnly></Rating> <span>{productDataById.rating}/5</span>
                         </div>
                         <div className='product-price'>
                            <div className='current-price'>{productData.currentPrice}</div>
@@ -199,7 +203,7 @@ const ProductDetails = () => {
             </section>
             <section className='suggestion-section'>
                <div className='section-title'>You might also like</div>
-               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
+               {/* <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid> */}
             </section>
          </Container>
       </>

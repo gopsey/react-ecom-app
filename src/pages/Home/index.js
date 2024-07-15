@@ -10,10 +10,7 @@ import ProductsGrid from '../../components/ui/ProductsGrid'
 import TestimonialCarousel from '../../components/ui/TestimonialCarousel'
 import CommonButton from '../../components/form/CommonButton'
 import { useTestimonials } from '../../hooks/useTestimonials';
-import tee1 from "../../assets/svg/tee1.svg"
-import jeans1 from "../../assets/svg/jeans1.svg"
-import shirt1 from "../../assets/svg/shirt1.svg"
-import tee2 from "../../assets/svg/tee2.svg"
+import { useNewArrivals } from '../../hooks/useProducts';
 import casual from "../../assets/svg/casual.svg"
 import formal from "../../assets/svg/formal.svg"
 import party from "../../assets/svg/party.svg"
@@ -21,7 +18,6 @@ import gym from "../../assets/svg/gym.svg"
 import './Home.scss';
 
 const Home = () => {
-   const [newArrivals, setNewArrivals] = useState([]);
    const [masonryGridProps, setMasonryGridProps] = useState([]);
    const [gridProperties] = useState({
       flexWrap: 'nowrap'
@@ -29,53 +25,11 @@ const Home = () => {
    const [prevSlide, setPrevSlide] = useState(false);
    const [nextSlide, setNextSlide] = useState(false);
 
-   const { data } = useTestimonials()
+   const { data: testimonialsData } = useTestimonials()
+   const { data: newArrivalsData } = useNewArrivals()
 
    // On Init
    useEffect(() => {
-      const newArrivals = [
-         {
-            productId: 99871,
-            defaultImage: tee1,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'T-Shirt with tape details',
-            rating: 4.5,
-            currentPrice: '$120',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            productId: 99872,
-            defaultImage: jeans1,
-            productImages: [shirt1, tee1, tee2],
-            title: 'Skinny fit jeans',
-            rating: 3.5,
-            currentPrice: '$240',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            productId: 99873,
-            defaultImage: shirt1,
-            productImages: [tee1, tee2, jeans1],
-            title: 'Checked Shirt',
-            rating: 2.5,
-            currentPrice: '$180',
-            previousPrice: '$260',
-            discount: '20%',
-            category: 'new-arrivals',
-         }, {
-            productId: 99874,
-            defaultImage: tee2,
-            productImages: [tee1, jeans1, shirt1],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         },
-      ]
       const masonryGridProperties = [
          {
             gridText: 'Casual',
@@ -111,7 +65,6 @@ const Home = () => {
          },
       ]
       setMasonryGridProps(masonryGridProperties)
-      setNewArrivals(newArrivals)
    }, [])
 
    return (
@@ -125,7 +78,7 @@ const Home = () => {
          <Container maxWidth='xl' className='container'>
             <section className='home-section'>
                <div className='section-title'>New Arrivals</div>
-               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
+               <ProductsGrid products={newArrivalsData} gridProperties={gridProperties}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton
@@ -142,7 +95,7 @@ const Home = () => {
 
             <section className='home-section top-selling'>
                <div className='section-title'>Top Selling</div>
-               <ProductsGrid products={newArrivals} gridProperties={gridProperties}></ProductsGrid>
+               <ProductsGrid products={newArrivalsData} gridProperties={gridProperties}></ProductsGrid>
                <div className="button-view-wrapper">
                   <div className='button-view-all'>
                      <CommonButton
@@ -165,7 +118,7 @@ const Home = () => {
                      <EastIcon className='right-arrow' onClick={() => setNextSlide(!nextSlide)} />
                   </div>
                </div>
-               <TestimonialCarousel slidesData={data} prevSlide={prevSlide} nextSlide={nextSlide} />
+               <TestimonialCarousel slidesData={testimonialsData} prevSlide={prevSlide} nextSlide={nextSlide} />
             </section>
          </Container>
       </>
