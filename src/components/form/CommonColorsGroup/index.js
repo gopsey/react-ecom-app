@@ -4,17 +4,22 @@ import './CommonColorsGroup.scss'
 
 const CommonColorsGroup = (props) => {
    const { buttonsList, selectedItem } = { ...props }
-   const [updatedButtonsList, setUpdatedButtonsList] = useState(buttonsList)
+   const [updatedButtonsList, setUpdatedButtonsList] = useState(getUniqueListBy(buttonsList, 'code'))
 
    const availableColorClickHandler = (key) => {
-      // selectedItem(key) // Passing back selected color to parent
-      const newUpdatedButtonsList = buttonsList.map((buttonItem) => ({ ...buttonItem, isSelected: buttonItem.id === key.id }))
-      setUpdatedButtonsList(newUpdatedButtonsList)
+      key.isSelected = true;
+      selectedItem(key) // Passing back selected color to parent
+      const newUpdatedButtonsList = buttonsList.map((buttonItem) => ({ ...buttonItem, isSelected: buttonItem.code === key.code }))
+      setUpdatedButtonsList(getUniqueListBy(newUpdatedButtonsList, 'code'))
    }
 
    useEffect(() => {
-      setUpdatedButtonsList(buttonsList)
+      setUpdatedButtonsList(getUniqueListBy(buttonsList, 'code'))
    }, [props.buttonsList])
+
+   function getUniqueListBy(arr, key) {
+      return [...new Map(arr.map(item => [item[key], item])).values()]
+   }
 
    return (
       <>
@@ -23,7 +28,7 @@ const CommonColorsGroup = (props) => {
                return (
                   <div
                      className='color-button-item'
-                     key={buttonItem.id}
+                     key={buttonItem.code}
                      style={{ backgroundColor: `${buttonItem.code}` }}
                      onClick={() => availableColorClickHandler(buttonItem)}
                   >

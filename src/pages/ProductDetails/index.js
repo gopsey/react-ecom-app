@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
@@ -17,15 +17,17 @@ import CommonButton from '../../components/form/CommonButton'
 import CounterButtonGroup from '../../components/form/CounterButtonGroup'
 import ProductsGrid from '../../components/ui/ProductsGrid'
 import TabNavigation from '../../components/ui/TabNavigation'
-import { useProductById } from '../../hooks/useProducts'
+import { useProductById, useSkuProduct } from '../../hooks/useProducts'
 
 const ProductDetails = () => {
    const urlParam = useLocation()
    const urlParams = useParams()
+   const navigate = useNavigate()
    const [productData, setProductData] = useState(null)
    const [enlargedImage, setEnlargedImage] = useState('')
-   const [selectedColorItem, setSelectedColorItem] = useState('')
-   const [selectedSizeItem, setSelectedSizeItem] = useState('')
+   const [selectedVariantData, setSelectedVariantData] = useState(null)
+   // const [selectedSizeItem, setSelectedSizeItem] = useState('')
+   const [availableSizesList, setAvailableSizesList] = useState(null)
    const [currentCountValue, setCurrentCountValue] = useState(0)
    const [addToCartButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Add to Cart', color: '#FFFFFF'
@@ -35,7 +37,16 @@ const ProductDetails = () => {
       flexWrap: 'nowrap'
    })
 
+   const [currentSkuId, setCurrentSkuId] = useState(urlParams.skuId);
    const { data: productDataById } = useProductById(urlParams.product);
+   const { data: skuProduct } = useSkuProduct(urlParams.product, currentSkuId);
+   const availableColors = productDataById?.variants.map((skuItem) => {
+      return { 'code': skuItem.colorHexCode, 'name': skuItem.colorName, 'isSelected': skuItem.skuId === urlParams.skuId ? true : false, 'skuId': skuItem.skuId }
+   })
+   const selectedColor = availableColors?.find(ele => ele?.isSelected)
+   const availableSizes = productDataById?.variants.filter((ele) => ele.colorHexCode === selectedColor.code).map((skuItem) => {
+      return { 'id': skuItem.sizeCode, 'description': skuItem.sizeName, 'isSelected': skuItem.skuId === urlParams.skuId ? true : false, 'skuId': skuItem.skuId }
+   })
 
    // On init
    useEffect(() => {
@@ -128,7 +139,21 @@ const ProductDetails = () => {
          setEnlargedImage(productDataInput.defaultImage)
          setNewArrivals(newArrivals)
       }
+      
+      setSelectedVariantData(productDataById?.variants[0]) // Setting first child as default variant on product load
    }, [urlParam])
+
+   const setSelectedColorItem = (selectedColor) => {
+      console.log('selectedColor', selectedColor)
+      setCurrentSkuId(selectedColor.skuId)
+      navigate(`/${productDataById?.category}/${urlParams?.product}/${selectedColor?.skuId}`)
+   }
+
+   const setSelectedSizeItem = (selectedSize) => {
+      console.log('selectedSize', selectedSize)
+      setCurrentSkuId(selectedSize.skuId)
+      navigate(`/${productDataById?.category}/${urlParams?.product}/${selectedSize?.skuId}`)
+   }
 
    return (
       <>
@@ -174,16 +199,16 @@ const ProductDetails = () => {
                                  label={`-${productData.discount}`}
                                  className='discount-price' />}
                         </div>
-                        <div className="product-description">{productData.productDescription}</div>
+                        <div className="product-description">{productDataById.productInformationData.productDescription}</div>
                         <Divider variant='fullWidth' className='product-divider' />
                         <div className='available-colors'>
                            <span>Select colors</span>
-                           <CommonColorsGroup buttonsList={productData.availableColors} selectedItem={setSelectedColorItem} />
+                           <CommonColorsGroup buttonsList={availableColors} selectedItem={setSelectedColorItem} />
                         </div>
                         <Divider variant='fullWidth' className='product-divider' />
                         <div className='available-sizes'>
                            <span>Choose Size</span>
-                           <CommonChipGroup chipsList={productData.availableSizes} selectedItem={setSelectedSizeItem} />
+                           <CommonChipGroup chipsList={availableSizes} selectedItem={setSelectedSizeItem} />
                         </div>
                         <Divider variant='fullWidth' className='product-divider' />
                         <div className='product-actions'>

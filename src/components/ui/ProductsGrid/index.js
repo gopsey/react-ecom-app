@@ -18,7 +18,7 @@ const ProductsGrid = ({ products, gridProperties }) => {
                productsData && productsData.map((productItem) => {
                   return (
                      <Grid item key={productItem?._id} className='product-item' >
-                        <Link to={`/${productItem?.category}/${productItem?._id}`} className='product-link'>
+                        <Link to={`/${productItem?.category}/${productItem?._id}/${productItem?.variants[0].skuId}`} className='product-link'>
                            <ProductItem {...productItem} />
                         </Link>
                      </Grid>

@@ -34,7 +34,7 @@ const BrowseByCategory = () => {
       console.log(urlParam.pathname);
       const listOfProducts = [
          {
-            productId: 99871,
+            _id: 99871,
             defaultImage: tee1,
             productImages: [jeans1, shirt1, tee2],
             title: 'T-Shirt with tape details',
@@ -44,7 +44,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99872,
+            _id: 99872,
             defaultImage: jeans1,
             productImages: [jeans1, shirt1, tee2],
             title: 'Skinny fit jeans',
@@ -54,7 +54,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99873,
+            _id: 99873,
             defaultImage: shirt1,
             productImages: [jeans1, shirt1, tee2],
             title: 'Checked Shirt',
@@ -64,7 +64,7 @@ const BrowseByCategory = () => {
             discount: '20%',
             category: 'new-arrivals',
          }, {
-            productId: 99855,
+            _id: 99855,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',
@@ -74,7 +74,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99874,
+            _id: 99874,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',
@@ -84,7 +84,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99866,
+            _id: 99866,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',
@@ -94,7 +94,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99824,
+            _id: 99824,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',
@@ -104,7 +104,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99888,
+            _id: 99888,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',
@@ -114,7 +114,7 @@ const BrowseByCategory = () => {
             discount: null,
             category: 'new-arrivals',
          }, {
-            productId: 99899,
+            _id: 99899,
             defaultImage: tee2,
             productImages: [jeans1, shirt1, tee2],
             title: 'Sleeved strioped T-Shirt',

@@ -12,9 +12,10 @@ const CommonChipGroup = (props) => {
    }, [props.chipsList])
 
    const chipClickHandler = (key) => {
-      const chipsListToUpdate = updatedChipsList.map((chipItem) => ({ ...chipItem, isSelected: chipItem.id === key }))
+      key.isSelected = true;
+      selectedItem(key) // Passing back selected chip to parent
+      const chipsListToUpdate = updatedChipsList.map((chipItem) => ({ ...chipItem, isSelected: chipItem.id === key.id }))
       setUpdatedChipsList(chipsListToUpdate)
-      selectedItem(key) // Passing back selected color to parent
    }
 
    return (
@@ -32,7 +33,7 @@ const CommonChipGroup = (props) => {
                               borderColor: 'transparent',
                               padding: '0 10px',
                            }}
-                           onClick={() => chipClickHandler(chipItem.id)}
+                           onClick={() => chipClickHandler(chipItem)}
                         />
                      </div>
                   )
