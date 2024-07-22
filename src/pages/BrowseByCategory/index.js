@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
@@ -10,15 +10,11 @@ import CategoryFilter from '../../components/ui/CategoryFilter'
 import CommonPagination from '../../components/ui/CommonPagination'
 import ModalDialog from '../../components/ui/ModalDialog'
 import CommonButton from '../../components/form/CommonButton'
-import tee1 from "../../assets/svg/tee1.svg"
-import jeans1 from "../../assets/svg/jeans1.svg"
-import shirt1 from "../../assets/svg/shirt1.svg"
-import tee2 from "../../assets/svg/tee2.svg"
+import { useProductsByCategory } from '../../hooks/useCategories'
 import './BrowseByCategory.scss'
 
 const BrowseByCategory = () => {
-   const urlParam = useLocation()
-   const [productsList, setProductsList] = useState([])
+   const urlParams = useParams()
    const [gridProperties] = useState({
       flexWrap: 'wrap'
    })
@@ -28,103 +24,10 @@ const BrowseByCategory = () => {
    const [pageNumber, setPageNumber] = useState(1);
    const [filterParameters, setFilterParameters] = useState({});
    const [filterDialog, setfilterDialog] = React.useState(false);
+   const { data: productsByCategory } = useProductsByCategory(urlParams.categoryId);
 
    // On init
    useEffect(() => {
-      console.log(urlParam.pathname);
-      const listOfProducts = [
-         {
-            _id: 99871,
-            defaultImage: tee1,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'T-Shirt with tape details',
-            rating: 4.5,
-            currentPrice: '$120',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99872,
-            defaultImage: jeans1,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Skinny fit jeans',
-            rating: 3.5,
-            currentPrice: '$240',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99873,
-            defaultImage: shirt1,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Checked Shirt',
-            rating: 2.5,
-            currentPrice: '$180',
-            previousPrice: '$260',
-            discount: '20%',
-            category: 'new-arrivals',
-         }, {
-            _id: 99855,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99874,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99866,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99824,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99888,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         }, {
-            _id: 99899,
-            defaultImage: tee2,
-            productImages: [jeans1, shirt1, tee2],
-            title: 'Sleeved strioped T-Shirt',
-            rating: 5,
-            currentPrice: '$130',
-            previousPrice: null,
-            discount: null,
-            category: 'new-arrivals',
-         },
-      ]
       const filterParams = {
          generalFilters: [
             {
@@ -221,12 +124,8 @@ const BrowseByCategory = () => {
             },
          ]
       }
-      // Make API call here with pathname as req and update response accordingly
-      if (urlParam?.pathname === '/casual') {
-         setProductsList(listOfProducts)
-      }
       setFilterParameters(filterParams)
-   }, [urlParam])
+   }, [])
 
    // Trigger http call when pagination changes from child
    useEffect(() => {
@@ -276,7 +175,7 @@ const BrowseByCategory = () => {
                         </ModalDialog>
                      </div>
                   </Stack>
-                  <ProductsGrid products={productsList} gridProperties={gridProperties} className='products-grid' />
+                  <ProductsGrid products={productsByCategory} gridProperties={gridProperties} className='products-grid' />
                   <Divider variant='fullWidth' />
                   <CommonPagination setPageNumber={setCurrentPageNumber} />
                </Grid>

@@ -35,13 +35,13 @@ const TabNavigation = ({ productDataInput }) => {
                <Tab value='3' label="FAQs" sx={{ textTransform: 'capitalize' }} />
             </TabList>
             <TabPanel value='1'>
-               <ProductInformation productInformationData={productInformationData?.productInformationData} />
+               <ProductInformation productInformationData={productInformationData} />
             </TabPanel>
             <TabPanel value='2'>
                <ProductReviews />
             </TabPanel>
             <TabPanel value='3'>
-               <ProductFaqs productInformationData={productInformationData?.productInformationData} />
+               <ProductFaqs productInformationData={productInformationData} />
             </TabPanel>
          </TabContext>
       </>

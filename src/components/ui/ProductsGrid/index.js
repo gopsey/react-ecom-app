@@ -16,9 +16,12 @@ const ProductsGrid = ({ products, gridProperties }) => {
          <Grid container className='products-wrapper' spacing={4} flexWrap={gridProperties.flexWrap}>
             {
                productsData && productsData.map((productItem) => {
+                  const category = productItem?.category;
+                  const productItemId = productItem?._id;
+                  const productItemDefaultVariantSkuId = productItem?.variants ? productItem?.variants[0]?.skuId : '';
                   return (
                      <Grid item key={productItem?._id} className='product-item' >
-                        <Link to={`/${productItem?.category}/${productItem?._id}/${productItem?.variants[0].skuId}`} className='product-link'>
+                        <Link to={`/${category}/${productItemId}/${productItemDefaultVariantSkuId}`} className='product-link'>
                            <ProductItem {...productItem} />
                         </Link>
                      </Grid>

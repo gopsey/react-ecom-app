@@ -5,19 +5,30 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import './CounterButtonGroup.scss'
 
-const CounterButtonGroup = ({ setCurrentCountValue }) => {
-   const [counterValue, setCounterValue] = useState(0)
+const CounterButtonGroup = ({ setCurrentCountValue, maxLimit, currentCounterValue }) => {
+   const [counterValue, setCounterValue] = useState(currentCounterValue)
+   const [maxLimitValue, setMaxLimitValue] = useState(0)
+
    useEffect(() => {
-      setCounterValue(1)
-   }, [])
+      setCounterValue(currentCounterValue ?? 1)
+   }, [currentCounterValue])
+
+   useEffect(() => {
+      setMaxLimitValue(maxLimit)
+   }, [maxLimit])
+
    const incrementCounterValue = () => {
-      setCounterValue(prevCount => prevCount + 1)
-      setCurrentCountValue(counterValue)
+      const newValue = counterValue + 1
+      setCounterValue(newValue)
+      setCurrentCountValue(newValue)
    }
+
    const decrementCounterValue = () => {
-      setCounterValue(prevCount => prevCount === 1 ? prevCount : prevCount - 1)
-      setCurrentCountValue(counterValue)
+      const newValue = counterValue === 1 ? 1 : counterValue - 1
+      setCounterValue(newValue)
+      setCurrentCountValue(newValue)
    }
+
    return (
       <>
          <ButtonGroup>
@@ -43,6 +54,7 @@ const CounterButtonGroup = ({ setCurrentCountValue }) => {
                variant='contained'
                disableElevation
                className='counter-button'
+               disabled={counterValue === maxLimitValue}
                sx={{
                   backgroundColor: 'rgb(240, 240, 240)',
                   '&:hover': {

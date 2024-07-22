@@ -20,15 +20,14 @@ import TabNavigation from '../../components/ui/TabNavigation'
 import { useProductById, useSkuProduct } from '../../hooks/useProducts'
 
 const ProductDetails = () => {
-   const urlParam = useLocation()
+   const urlLocation = useLocation()
    const urlParams = useParams()
    const navigate = useNavigate()
    const [productData, setProductData] = useState(null)
    const [enlargedImage, setEnlargedImage] = useState('')
    const [selectedVariantData, setSelectedVariantData] = useState(null)
-   // const [selectedSizeItem, setSelectedSizeItem] = useState('')
+   const [itemStockLimit, setItemStockLimit] = useState(0)
    const [availableSizesList, setAvailableSizesList] = useState(null)
-   const [currentCountValue, setCurrentCountValue] = useState(0)
    const [addToCartButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Add to Cart', color: '#FFFFFF'
    })
@@ -38,15 +37,20 @@ const ProductDetails = () => {
    })
 
    const [currentSkuId, setCurrentSkuId] = useState(urlParams.skuId);
+   const [currentSizeId, setCurrentSizeId] = useState(null);
+   const [currentCounterValue, setCurrentCounterValue] = useState(1);
    const { data: productDataById } = useProductById(urlParams.product);
    const { data: skuProduct } = useSkuProduct(urlParams.product, currentSkuId);
    const availableColors = productDataById?.variants.map((skuItem) => {
       return { 'code': skuItem.colorHexCode, 'name': skuItem.colorName, 'isSelected': skuItem.skuId === urlParams.skuId ? true : false, 'skuId': skuItem.skuId }
    })
-   const selectedColor = availableColors?.find(ele => ele?.isSelected)
-   const availableSizes = productDataById?.variants.filter((ele) => ele.colorHexCode === selectedColor.code).map((skuItem) => {
-      return { 'id': skuItem.sizeCode, 'description': skuItem.sizeName, 'isSelected': skuItem.skuId === urlParams.skuId ? true : false, 'skuId': skuItem.skuId }
+   const availableSizes = skuProduct?.sizeVariants.map((skuItem) => {
+      return { 'id': skuItem.sizeCode, 'description': skuItem.sizeName, 'isSelected': currentSizeId === skuItem._id ? true : false, 'sizeUniqueId': skuItem._id }
    })
+   const mrp = skuProduct?.maximumRetailPrice;
+   const currencyCode = skuProduct?.currencyCode;
+   const discountPercentage = skuProduct?.discountPercent;
+   const currentPrice = discountPercentage ? Math.trunc(mrp - (mrp * (discountPercentage / 100))) : Math.trunc(mrp);
 
    // On init
    useEffect(() => {
@@ -134,25 +138,32 @@ const ProductDetails = () => {
          },
       ]
       // Make API call here with pathname as req and update response accordingly
-      if (urlParam?.pathname) {
+      if (urlLocation?.pathname) {
          setProductData(productDataInput)
          setEnlargedImage(productDataInput.defaultImage)
          setNewArrivals(newArrivals)
       }
-      
+
       setSelectedVariantData(productDataById?.variants[0]) // Setting first child as default variant on product load
-   }, [urlParam])
+   }, [urlLocation])
 
    const setSelectedColorItem = (selectedColor) => {
       console.log('selectedColor', selectedColor)
       setCurrentSkuId(selectedColor.skuId)
+      setCurrentCounterValue(1)
       navigate(`/${productDataById?.category}/${urlParams?.product}/${selectedColor?.skuId}`)
    }
 
    const setSelectedSizeItem = (selectedSize) => {
       console.log('selectedSize', selectedSize)
-      setCurrentSkuId(selectedSize.skuId)
-      navigate(`/${productDataById?.category}/${urlParams?.product}/${selectedSize?.skuId}`)
+      setCurrentSizeId(selectedSize.sizeUniqueId)
+      const stockLimitCount = skuProduct?.sizeVariants.find(ele => ele._id === selectedSize?.sizeUniqueId).unitsCountInStock;
+      setItemStockLimit(stockLimitCount)
+      setCurrentCounterValue(1)
+   }
+
+   const setCurrentCountValue = (count) => {
+      setCurrentCounterValue(count)
    }
 
    return (
@@ -190,13 +201,13 @@ const ProductDetails = () => {
                            <Rating value={productDataById.rating} precision={0.5} readOnly></Rating> <span>{productDataById.rating}/5</span>
                         </div>
                         <div className='product-price'>
-                           <div className='current-price'>{productData.currentPrice}</div>
-                           {productData.previousPrice && <div className='previous-price'><del>{productData.previousPrice}</del></div>}
-                           {productData.discount &&
+                           <div className='current-price'>{currencyCode}{currentPrice}</div>
+                           {mrp && <div className='previous-price'><del>{currencyCode}{mrp}</del></div>}
+                           {discountPercentage &&
                               <Chip
                                  variant='outlined'
                                  color='error'
-                                 label={`-${productData.discount}`}
+                                 label={`-${discountPercentage}%`}
                                  className='discount-price' />}
                         </div>
                         <div className="product-description">{productDataById.productInformationData.productDescription}</div>
@@ -213,7 +224,7 @@ const ProductDetails = () => {
                         <Divider variant='fullWidth' className='product-divider' />
                         <div className='product-actions'>
                            <div className='counter-button-wrapper'>
-                              <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} />
+                              <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} maxLimit={itemStockLimit} currentCounterValue={currentCounterValue} />
                            </div>
                            <div className='cart-button-wrapper'>
                               <CommonButton {...addToCartButtonProps} />
@@ -224,7 +235,7 @@ const ProductDetails = () => {
                </Grid>
             }
             <section className='tabs-section'>
-               <TabNavigation productDataInput={productData} />
+               <TabNavigation productDataInput={productDataById?.productInformationData} />
             </section>
             <section className='suggestion-section'>
                <div className='section-title'>You might also like</div>

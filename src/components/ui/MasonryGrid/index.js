@@ -9,7 +9,7 @@ const MasonryGrid = ({ masonryGridProps }) => {
       <>
          <Grid container rowSpacing={2} columnSpacing={2}>
             {
-               masonryGridProps.map((gridProp) => {
+               masonryGridProps?.map((gridProp) => {
                   return (
                      <Grid item xs={gridProp.xs} sm={gridProp.sm} lg={gridProp.lg} key={gridProp.gridText}>
                         <Link to={gridProp.routeLink} className='grid-link'>

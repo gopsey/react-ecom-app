@@ -11,10 +11,7 @@ import TestimonialCarousel from '../../components/ui/TestimonialCarousel'
 import CommonButton from '../../components/form/CommonButton'
 import { useTestimonials } from '../../hooks/useTestimonials';
 import { useNewArrivals } from '../../hooks/useProducts';
-import casual from "../../assets/svg/casual.svg"
-import formal from "../../assets/svg/formal.svg"
-import party from "../../assets/svg/party.svg"
-import gym from "../../assets/svg/gym.svg"
+import { useCategories } from '../../hooks/useCategories';
 import './Home.scss';
 
 const Home = () => {
@@ -27,45 +24,20 @@ const Home = () => {
 
    const { data: testimonialsData } = useTestimonials()
    const { data: newArrivalsData } = useNewArrivals()
-
-   // On Init
-   useEffect(() => {
-      const masonryGridProperties = [
+   const { data: categoriesData } = useCategories()
+   const masonryGridProperties = categoriesData?.map(category => {
+      const longWidth = /Formal|Party/.test(category?.name)
+      return (
          {
-            gridText: 'Casual',
-            gridImage: casual,
-            routeLink: '/casual',
+            gridText: category?.name,
+            gridImage: category?.image,
+            routeLink: `/categories/productsBy/${category?._id}`,
             xs: 12,
             sm: 12,
-            lg: 4,
-         },
-         {
-            gridText: 'Formal',
-            gridImage: formal,
-            routeLink: '/formal',
-            xs: 12,
-            sm: 12,
-            lg: 8,
-         },
-         {
-            gridText: 'Party',
-            gridImage: party,
-            routeLink: '/party',
-            xs: 12,
-            sm: 12,
-            lg: 8,
-         },
-         {
-            gridText: 'Gym',
-            gridImage: gym,
-            routeLink: '/gym',
-            xs: 12,
-            sm: 12,
-            lg: 4,
-         },
-      ]
-      setMasonryGridProps(masonryGridProperties)
-   }, [])
+            lg: longWidth ? 8 : 4,
+         }
+      )
+   })
 
    return (
       <>
@@ -109,7 +81,7 @@ const Home = () => {
             </section>
             <section className='home-section browse-dress-style'>
                <div className='section-title'>Browse by dress style</div>
-               <MasonryGrid masonryGridProps={masonryGridProps}></MasonryGrid>
+               <MasonryGrid masonryGridProps={masonryGridProperties}></MasonryGrid>
             </section>
             <section className='home-section testimonials-carousel'>
                <div className='section-title testimony-wrapper'>Our Happy Customers
