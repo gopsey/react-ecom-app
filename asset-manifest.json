@@ -1,17 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.d6bd1a55.css",
-    "main.js": "/static/js/main.a6dafd72.js",
+    "main.js": "/static/js/main.f4fe1f93.js",
     "static/js/453.b636c0af.chunk.js": "/static/js/453.b636c0af.chunk.js",
     "static/media/homebannerrect.svg": "/static/media/homebannerrect.abdb6a2ef5338ebf8343.svg",
     "static/media/shirt1.svg": "/static/media/shirt1.607d6d72aec6d385b8a821de0a70b0f1.svg",
     "static/media/jeans1.svg": "/static/media/jeans1.ffb1b878990708a0a0ecbe77568456e3.svg",
     "static/media/tee2.svg": "/static/media/tee2.c3c12bb5866ea60e71e8ac9152352036.svg",
     "static/media/tee1.svg": "/static/media/tee1.2c742e76c4bbf774eff50da3d2242e8e.svg",
-    "static/media/gym.svg": "/static/media/gym.54ff3a3cc63bf9909720a4a26ccbc436.svg",
-    "static/media/party.svg": "/static/media/party.227d025ea3074d29000f31e15c612062.svg",
-    "static/media/formal.svg": "/static/media/formal.0828bb27d96ff8ca870d109beda82d11.svg",
-    "static/media/casual.svg": "/static/media/casual.55efda0ddf6e874cf60eff06ef797f7f.svg",
     "static/media/gucci.svg": "/static/media/gucci.86d31912305d5798606eee71f8055cc5.svg",
     "static/media/Paypal.svg": "/static/media/Paypal.f530836737cd9f6b5af9678784eb5de7.svg",
     "static/media/versace.svg": "/static/media/versace.995da5fe902b5fb449a6bcf6989b7ef4.svg",
@@ -25,11 +21,11 @@
     "index.html": "/index.html",
     "static/media/homestar.svg": "/static/media/homestar.7d9d6b6dc9bec1c511d258fb336a67a5.svg",
     "main.d6bd1a55.css.map": "/static/css/main.d6bd1a55.css.map",
-    "main.a6dafd72.js.map": "/static/js/main.a6dafd72.js.map",
+    "main.f4fe1f93.js.map": "/static/js/main.f4fe1f93.js.map",
     "453.b636c0af.chunk.js.map": "/static/js/453.b636c0af.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d6bd1a55.css",
-    "static/js/main.a6dafd72.js"
+    "static/js/main.f4fe1f93.js"
   ]
 }
