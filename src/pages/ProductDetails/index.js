@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
@@ -17,17 +17,20 @@ import CommonButton from '../../components/form/CommonButton'
 import CounterButtonGroup from '../../components/form/CounterButtonGroup'
 import ProductsGrid from '../../components/ui/ProductsGrid'
 import TabNavigation from '../../components/ui/TabNavigation'
-import { useProductById, useSkuProduct } from '../../hooks/useProducts'
+import { useProductById } from '../../hooks/useProducts'
 
 const ProductDetails = () => {
-   const urlLocation = useLocation()
    const urlParams = useParams()
    const navigate = useNavigate()
-   const [productData, setProductData] = useState(null)
-   const [enlargedImage, setEnlargedImage] = useState('')
-   const [selectedVariantData, setSelectedVariantData] = useState(null)
-   const [itemStockLimit, setItemStockLimit] = useState(0)
+   const { data: productDataById } = useProductById(urlParams.productId)
+   const [currentVariantId, setCurrentVariantId] = useState(urlParams.variantId)
+   const [availableColorsList, setAvailableColorsList] = useState(null)
    const [availableSizesList, setAvailableSizesList] = useState(null)
+   const [selectedVariantData, setSelectedVariantData] = useState(null)
+   const [priceData, setPriceData] = useState(null)
+
+   const [enlargedImage, setEnlargedImage] = useState('')
+   const [itemStockLimit, setItemStockLimit] = useState(1)
    const [addToCartButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Add to Cart', color: '#FFFFFF'
    })
@@ -35,65 +38,11 @@ const ProductDetails = () => {
    const [gridProperties] = useState({
       flexWrap: 'nowrap'
    })
-
-   const [currentSkuId, setCurrentSkuId] = useState(urlParams.skuId);
-   const [currentSizeId, setCurrentSizeId] = useState(null);
+   const [currentSkuId, setCurrentSkuId] = useState(null);
    const [currentCounterValue, setCurrentCounterValue] = useState(1);
-   const { data: productDataById } = useProductById(urlParams.product);
-   const { data: skuProduct } = useSkuProduct(urlParams.product, currentSkuId);
-   const availableColors = productDataById?.variants.map((skuItem) => {
-      return { 'code': skuItem.colorHexCode, 'name': skuItem.colorName, 'isSelected': skuItem.skuId === urlParams.skuId ? true : false, 'skuId': skuItem.skuId }
-   })
-   const availableSizes = skuProduct?.sizeVariants.map((skuItem) => {
-      return { 'id': skuItem.sizeCode, 'description': skuItem.sizeName, 'isSelected': currentSizeId === skuItem._id ? true : false, 'sizeUniqueId': skuItem._id }
-   })
-   const mrp = skuProduct?.maximumRetailPrice;
-   const currencyCode = skuProduct?.currencyCode;
-   const discountPercentage = skuProduct?.discountPercent;
-   const currentPrice = discountPercentage ? Math.trunc(mrp - (mrp * (discountPercentage / 100))) : Math.trunc(mrp);
 
-   // On init
+   // Will be triggered once URL changes (or) API response is got for productDataById from products/:productId
    useEffect(() => {
-      const productDataInput = {
-         productId: 99871,
-         productDescription: 'This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.',
-         defaultImage: tee1,
-         productImages: [jeans1, shirt1, tee2],
-         availableSizes: [
-            { id: 'small', description: 'Small', isSelected: false },
-            { id: 'medium', description: 'Medium', isSelected: true },
-            { id: 'large', description: 'Large', isSelected: false },
-            { id: 'extraLarge', description: 'X-Large', isSelected: false }
-         ],
-         availableColors: [
-            { id: '314F4A', code: '#314F4A', isSelected: true },
-            { id: '4F4631', code: '#4F4631', isSelected: false },
-            { id: '31344F', code: '#31344F', isSelected: false },
-         ],
-         title: 'T-Shirt with tape details',
-         rating: 4.5,
-         currentPrice: '$120',
-         previousPrice: '$260',
-         discount: '20%',
-         category: 'new-arrivals',
-         productInformationData: {
-            productDescription: 'This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.',
-            productFaqs: [
-               {
-                  question: 'Is this a reliable product?',
-                  answer: 'Yes, this is a reliable product',
-               },
-               {
-                  question: 'Is return policy available',
-                  answer: 'Yes, you can return in 7 days',
-               },
-               {
-                  question: 'Is refund available?',
-                  answer: 'No refund, you can return and get different size',
-               },
-            ]
-         }
-      }
       const newArrivals = [
          {
             productId: 99871,
@@ -137,27 +86,45 @@ const ProductDetails = () => {
             category: 'casual',
          },
       ]
-      // Make API call here with pathname as req and update response accordingly
-      if (urlLocation?.pathname) {
-         setProductData(productDataInput)
-         setEnlargedImage(productDataInput.defaultImage)
-         setNewArrivals(newArrivals)
-      }
+      setNewArrivals(newArrivals)
 
-      setSelectedVariantData(productDataById?.variants[0]) // Setting first child as default variant on product load
-   }, [urlLocation])
+      if (productDataById) {
+         const selectedVariant = productDataById?.variants.find(variant => variant._id === currentVariantId);
+         const availableColors = productDataById?.variants.map((variantItem) => {
+            return { 'code': variantItem.colorHexCode, 'name': variantItem.colorName, 'isSelected': variantItem._id === urlParams.variantId ? true : false, 'variantId': variantItem._id }
+         })
+         const availableSizes = selectedVariant?.sizes.map((skuItem) => {
+            return { 'id': skuItem.sizeCode, 'description': skuItem.sizeName, 'isSelected': currentSkuId === skuItem._id ? true : false, 'sizeUniqueId': skuItem._id }
+         })
+         const mrp = selectedVariant?.maximumRetailPrice;
+         const currencyCode = selectedVariant?.currencyCode;
+         const discountPercentage = selectedVariant?.discountPercent;
+         const currentPrice = discountPercentage ? Math.trunc(mrp - (mrp * (discountPercentage / 100))) : Math.trunc(mrp);
+         const priceData = {
+            mrp,
+            currencyCode,
+            discountPercentage,
+            currentPrice,
+         }
+         setEnlargedImage(productDataById.productImages[0]) // Setting first child as default image on product load
+         setSelectedVariantData(selectedVariant)
+         setAvailableColorsList(availableColors)
+         setAvailableSizesList(availableSizes)
+         setPriceData(priceData)
+      }
+   }, [urlParams, productDataById])
 
    const setSelectedColorItem = (selectedColor) => {
-      console.log('selectedColor', selectedColor)
-      setCurrentSkuId(selectedColor.skuId)
+      setCurrentVariantId(selectedColor.variantId)
+      setItemStockLimit(1)
       setCurrentCounterValue(1)
-      navigate(`/${productDataById?.category}/${urlParams?.product}/${selectedColor?.skuId}`)
+      setSelectedVariantData(productDataById?.variants.find(variant => variant.skuId === selectedColor.variantId))
+      navigate(`/${urlParams?.productId}/${selectedColor?.variantId}`)
    }
 
    const setSelectedSizeItem = (selectedSize) => {
-      console.log('selectedSize', selectedSize)
-      setCurrentSizeId(selectedSize.sizeUniqueId)
-      const stockLimitCount = skuProduct?.sizeVariants.find(ele => ele._id === selectedSize?.sizeUniqueId).unitsCountInStock;
+      setCurrentSkuId(selectedSize.sizeUniqueId)
+      const stockLimitCount = selectedVariantData?.sizes.find(ele => ele._id === selectedSize?.sizeUniqueId).unitsCountInStock;
       setItemStockLimit(stockLimitCount)
       setCurrentCounterValue(1)
    }
@@ -166,73 +133,108 @@ const ProductDetails = () => {
       setCurrentCounterValue(count)
    }
 
+   const onAddToCartClicked = () => {
+      const cartDetails = {
+         variantId: currentVariantId,
+         skuId: currentSkuId,
+         productId: productDataById?._id,
+         name: productDataById?.name,
+         image: productDataById?.productImages[0],
+         colorName: selectedVariantData?.colorName,
+         sizeName: selectedVariantData?.sizes?.find(sizeVariant => currentSkuId === sizeVariant._id).sizeName,
+         numberOfUnits: currentCounterValue,
+         price: priceData?.currentPrice,
+         currencyCode: priceData?.currencyCode,
+      }
+      const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
+      if (localCartDetails && localCartDetails.cartItems) {
+         let alreadyAddedSkuItemIndex = 0;
+         const alreadyAddedSkuItemInCart = localCartDetails?.cartItems.find((localCartDetail, index) => {
+            alreadyAddedSkuItemIndex = index;
+            return localCartDetail.variantId === currentVariantId && localCartDetail.skuId === currentSkuId;
+         })
+         if (alreadyAddedSkuItemInCart) {
+            cartDetails.numberOfUnits = cartDetails.numberOfUnits += alreadyAddedSkuItemInCart.numberOfUnits;
+            localCartDetails.cartItems[alreadyAddedSkuItemIndex] = cartDetails;
+         } else {
+            localCartDetails.cartItems.push(cartDetails)
+         }
+         localStorage.setItem('cartDetails', JSON.stringify(localCartDetails))
+      } else {
+         const cartItemsList = { cartItems: [cartDetails] }
+         localStorage.setItem('cartDetails', JSON.stringify(cartItemsList))
+      }
+   }
+
    return (
       <>
          <Container maxWidth='xl'>
             <Divider variant='fullWidth' />
             {
-               productData && productDataById &&
-               <Grid container className='product-details' spacing={2}>
-                  <Grid item xs={12} sm={12} md={6}>
-                     <Grid container className='product-images-wrapper' spacing={2}>
-                        <Grid item xs={12} sm={12} md={3}>
-                           <Stack direction={{ xs: 'row', md: 'column' }}
-                              spacing={1}>
-                              {
-                                 productData ? productData.productImages.map((image) => {
-                                    return (
-                                       <div className='product-images' key={`${image}`}>
-                                          <img src={image} alt="" className='pdt-img' onMouseEnter={() => setEnlargedImage(image)} />
-                                       </div>
-                                    )
-                                 }) : <span>No data Available</span>
-                              }
-                           </Stack>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={9} className='enlarged-image-wrapper'>
-                           <img src={enlargedImage} alt="" className='pdt-img' />
+               productDataById ?
+                  <Grid container className='product-details' spacing={2}>
+                     <Grid item xs={12} sm={12} md={6}>
+                        <Grid container className='product-images-wrapper' spacing={2}>
+                           <Grid item xs={12} sm={12} md={3}>
+                              <Stack direction={{ xs: 'row', md: 'column' }}
+                                 spacing={1}>
+                                 {
+                                    productDataById.productImages.map((image) => {
+                                       return (
+                                          <div className='product-images' key={`${image}`}>
+                                             <img src={image} alt="" className='pdt-img' onMouseEnter={() => setEnlargedImage(image)} />
+                                          </div>
+                                       )
+                                    })
+                                 }
+                              </Stack>
+                           </Grid>
+                           <Grid item xs={12} sm={12} md={9} className='enlarged-image-wrapper'>
+                              <img src={enlargedImage} alt="" className='pdt-img' />
+                           </Grid>
                         </Grid>
                      </Grid>
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={6}>
-                     <div className='product-details-info'>
-                        <div className='product-title'>{productDataById.name}</div>
-                        <div className='product-ratings'>
-                           <Rating value={productDataById.rating} precision={0.5} readOnly></Rating> <span>{productDataById.rating}/5</span>
-                        </div>
-                        <div className='product-price'>
-                           <div className='current-price'>{currencyCode}{currentPrice}</div>
-                           {mrp && <div className='previous-price'><del>{currencyCode}{mrp}</del></div>}
-                           {discountPercentage &&
-                              <Chip
-                                 variant='outlined'
-                                 color='error'
-                                 label={`-${discountPercentage}%`}
-                                 className='discount-price' />}
-                        </div>
-                        <div className="product-description">{productDataById.productInformationData.productDescription}</div>
-                        <Divider variant='fullWidth' className='product-divider' />
-                        <div className='available-colors'>
-                           <span>Select colors</span>
-                           <CommonColorsGroup buttonsList={availableColors} selectedItem={setSelectedColorItem} />
-                        </div>
-                        <Divider variant='fullWidth' className='product-divider' />
-                        <div className='available-sizes'>
-                           <span>Choose Size</span>
-                           <CommonChipGroup chipsList={availableSizes} selectedItem={setSelectedSizeItem} />
-                        </div>
-                        <Divider variant='fullWidth' className='product-divider' />
-                        <div className='product-actions'>
-                           <div className='counter-button-wrapper'>
-                              <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} maxLimit={itemStockLimit} currentCounterValue={currentCounterValue} />
+                     <Grid item xs={12} sm={12} md={6}>
+                        <div className='product-details-info'>
+                           <div className='product-title'>{productDataById.name}</div>
+                           <div className='product-ratings'>
+                              <Rating value={productDataById.rating} precision={0.5} readOnly></Rating> <span>{productDataById.rating}/5</span>
                            </div>
-                           <div className='cart-button-wrapper'>
-                              <CommonButton {...addToCartButtonProps} />
+                           <div className='product-price'>
+                              <div className='current-price'>{priceData?.currencyCode}{priceData?.currentPrice.toLocaleString()}</div>
+                              {priceData?.mrp && <div className='previous-price'><del>{priceData?.currencyCode}{priceData?.mrp.toLocaleString()}</del></div>}
+                              {priceData?.discountPercentage &&
+                                 <Chip
+                                    variant='outlined'
+                                    color='error'
+                                    label={`-${priceData?.discountPercentage}%`}
+                                    className='discount-price' />}
+                           </div>
+                           <div className="product-description">{productDataById.productInformationData.productDescription}</div>
+                           <Divider variant='fullWidth' className='product-divider' />
+                           <div className='available-colors'>
+                              <span>Select colors</span>
+                              <CommonColorsGroup buttonsList={availableColorsList} selectedItem={setSelectedColorItem} />
+                           </div>
+                           <Divider variant='fullWidth' className='product-divider' />
+                           <div className='available-sizes'>
+                              <span>Choose Size</span>
+                              <CommonChipGroup chipsList={availableSizesList} selectedItem={setSelectedSizeItem} />
+                           </div>
+                           <Divider variant='fullWidth' className='product-divider' />
+                           <div className='product-actions'>
+                              <div className='counter-button-wrapper'>
+                                 <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} maxLimit={itemStockLimit} currentCounterValue={currentCounterValue} />
+                              </div>
+                              <div className='cart-button-wrapper'>
+                                 <CommonButton {...addToCartButtonProps} onButtonClick={onAddToCartClicked} />
+                              </div>
                            </div>
                         </div>
-                     </div>
+                     </Grid>
                   </Grid>
-               </Grid>
+                  :
+                  <span>No data Available</span>
             }
             <section className='tabs-section'>
                <TabNavigation productDataInput={productDataById?.productInformationData} />

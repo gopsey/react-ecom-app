@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
@@ -28,6 +28,7 @@ const BrowseByCategory = () => {
 
    // On init
    useEffect(() => {
+      window.scrollTo(0, 0)
       const filterParams = {
          generalFilters: [
             {

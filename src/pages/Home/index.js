@@ -15,7 +15,6 @@ import { useCategories } from '../../hooks/useCategories';
 import './Home.scss';
 
 const Home = () => {
-   const [masonryGridProps, setMasonryGridProps] = useState([]);
    const [gridProperties] = useState({
       flexWrap: 'nowrap'
    })

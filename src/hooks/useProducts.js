@@ -1,22 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductById, getNewArrivals, getSkuProduct } from "../api/productsApi";
+import { getProductById, getNewArrivals } from "../api/productsApi";
 
 export const useProductById = (productId) => {
    const query = useQuery({
       queryKey: ['product', productId], // Unique key for this query
       queryFn: () => getProductById(productId),
       enabled: !!productId, // This ensures the query is only run if productId is truthy
-      retry: false,
-      refetchOnWindowFocus: false,
-   })
-   return { ...query }
-}
-
-export const useSkuProduct = (productId, skuId) => {
-   const query = useQuery({
-      queryKey: ['skuId', skuId], // Unique key for this query
-      queryFn: () => getSkuProduct(productId, skuId),
-      enabled: !!skuId, // This ensures the query is only run if productId is truthy
       retry: false,
       refetchOnWindowFocus: false,
    })
