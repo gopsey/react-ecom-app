@@ -43,6 +43,7 @@ const ProductDetails = () => {
 
    // Will be triggered once URL changes (or) API response is got for productDataById from products/:productId
    useEffect(() => {
+      window.scrollTo(0, 0)
       const newArrivals = [
          {
             productId: 99871,
@@ -145,6 +146,7 @@ const ProductDetails = () => {
          numberOfUnits: currentCounterValue,
          price: priceData?.currentPrice,
          currencyCode: priceData?.currencyCode,
+         unitsCountInStock: itemStockLimit,
       }
       const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
       if (localCartDetails && localCartDetails.cartItems) {

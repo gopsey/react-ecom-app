@@ -12,7 +12,6 @@ import './Cart.scss'
 
 const Cart = () => {
    const [cartDetails, setCartDetails] = useState({})
-   const [currentCounterValue, setCurrentCounterValue] = useState(1);
    const [checkoutButtonProps] = useState({
       variant: 'contained', bgColor: '#000000', btnText: 'Go to Checkout', color: '#FFFFFF', endIcon: <EastIcon />
    })
@@ -23,24 +22,21 @@ const Cart = () => {
    useEffect(() => {
       const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
       const cartItems = localCartDetails?.cartItems;
-      const { subTotal, discountPercent, discountPrice, deliveryFee, total, currencyCode } = calculateTotalPrice(cartItems)
-      console.log(subTotal)
-      setCartDetails({
-         cartItems,
-         orderSummary: {
-            subTotal,
-            total,
-            currencyCode,
-            discountPercent,
-            discountPrice,
-            deliveryFee,
-            promoCode: '',
-         }
-      })
+      updateCartDetailsData(cartItems)
    }, []);
 
-   const setCurrentCountValue = (count) => {
-      setCurrentCounterValue(count)
+   const setCurrentCountValue = (count, cartItem) => {
+      const currentCartItem = cartItem
+      const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
+      const cartItems = localCartDetails?.cartItems;
+      const updatedCartItems = cartItems?.map(cartItem => {
+         cartItem.numberOfUnits = cartItem.skuId === currentCartItem.skuId ? count : cartItem.numberOfUnits
+         return cartItem
+      })
+      if (updatedCartItems && updatedCartItems.length > 0) {
+         updateCartDetailsData(updatedCartItems)
+         localStorage.setItem('cartDetails', JSON.stringify({ 'cartItems': updatedCartItems }))
+      }
    }
 
    const calculateTotalPrice = (cartItemsData) => {
@@ -57,6 +53,35 @@ const Cart = () => {
          currencyCode = cartItemsData[0].currencyCode
       }
       return { subTotal, discountPercent, discountPrice, deliveryFee, total, currencyCode }
+   }
+
+   const removeCartItem = (skuId) => {
+      const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
+      const cartItems = localCartDetails?.cartItems;
+      const updatedCartItems = cartItems?.filter(cartItem => cartItem.skuId !== skuId)
+      if (updatedCartItems && updatedCartItems.length > 0) {
+         updateCartDetailsData(updatedCartItems)
+         localStorage.setItem('cartDetails', JSON.stringify({ 'cartItems': updatedCartItems }))
+      } else {
+         setCartDetails({})
+         localStorage.removeItem('cartDetails')
+      }
+   }
+
+   const updateCartDetailsData = (cartItems) => {
+      const { subTotal, discountPercent, discountPrice, deliveryFee, total, currencyCode } = calculateTotalPrice(cartItems)
+      setCartDetails({
+         cartItems,
+         orderSummary: {
+            subTotal,
+            total,
+            currencyCode,
+            discountPercent,
+            discountPrice,
+            deliveryFee,
+            promoCode: '',
+         }
+      })
    }
 
    return (
@@ -80,13 +105,13 @@ const Cart = () => {
                                           <div className='cart-item-content'>
                                              <div className='item-title-remove'>
                                                 <span className='item-title'>{cartItem.name}</span>
-                                                <DeleteIcon color='error' />
+                                                <DeleteIcon color='error' onClick={() => removeCartItem(cartItem.skuId)} />
                                              </div>
                                              <div className=''>Size: <span>{cartItem.sizeName}</span></div>
                                              <div className=''>Color: <span>{cartItem.colorName}</span></div>
                                              <div className='item-price-count'>
                                                 <span className='item-price'>{cartItem.currencyCode}{cartItem.price.toLocaleString()}</span>
-                                                <CounterButtonGroup setCurrentCountValue={setCurrentCountValue} currentCounterValue={cartItem.numberOfUnits} />
+                                                <CounterButtonGroup setCurrentCountValue={(count) => setCurrentCountValue(count, cartItem)} maxLimit={cartItem.unitsCountInStock} currentCounterValue={cartItem.numberOfUnits} />
                                              </div>
                                           </div>
                                        </div>
