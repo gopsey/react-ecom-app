@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 const CommonButton = (props) => {
    const { variant, bgColor, btnText, color, borderColor, onButtonClick, startIcon, endIcon } = { ...props };
    const triggerOnButtonClick = () => {
-      // onButtonClick()
+      onButtonClick()
    }
    return (
       <Button
