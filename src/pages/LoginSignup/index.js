@@ -38,7 +38,6 @@ const LoginSignup = () => {
   };
 
   const handleLoginButtonClick = () => {
-    console.log(loginFormValues)
     mutation.mutateAsync(loginFormValues)
   }
 
