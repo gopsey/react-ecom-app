@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Container, Input, InputAdornment } from '@mui/material';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Person from '@mui/icons-material/Person';
@@ -26,6 +27,7 @@ const LoginSignup = () => {
   ]
   const [loginFormValues, setLoginFormValues] = useState({});
   const mutation = useLoginSignup()
+  const navigate = useNavigate()
 
   const loginSignupSwitch = () => {
     setIsLoginForm(!isLoginForm)
@@ -37,8 +39,11 @@ const LoginSignup = () => {
     validateField(value, field);
   };
 
-  const handleLoginButtonClick = () => {
-    mutation.mutateAsync(loginFormValues)
+  const handleLoginButtonClick = async () => {
+    const response = await mutation.mutateAsync(loginFormValues)
+    if (response) {
+      navigate('/')
+    }
   }
 
   const validateField = (value, field) => {
