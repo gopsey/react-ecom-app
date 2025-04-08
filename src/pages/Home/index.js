@@ -38,6 +38,10 @@ const Home = () => {
       )
    })
 
+   const viewAllClick = () => {
+      
+   }
+
    return (
       <>
          <section className='home-section home-banner'>
@@ -57,7 +61,8 @@ const Home = () => {
                         bgColor={''}
                         btnText={'View All'}
                         color={'#000000'}
-                        borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+                        borderColor={'rgba(0,0,0,.1)'}
+                        onButtonClick={viewAllClick}></CommonButton>
                   </div>
                </div>
             </section>
@@ -74,7 +79,8 @@ const Home = () => {
                         bgColor={''}
                         btnText={'View All'}
                         color={'#000000'}
-                        borderColor={'rgba(0,0,0,.1)'}></CommonButton>
+                        borderColor={'rgba(0,0,0,.1)'}
+                        onButtonClick={viewAllClick}></CommonButton>
                   </div>
                </div>
             </section>

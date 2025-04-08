@@ -43,6 +43,14 @@
             border: none;
             width: 58px;
             height: 28px;
+
+            @include screen(small) {
+               display: none;
+            }
+      
+            @include screen(medium) {
+               display: none;
+            }
          }
       }
 

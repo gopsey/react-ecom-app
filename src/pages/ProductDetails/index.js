@@ -40,6 +40,7 @@ const ProductDetails = () => {
    })
    const [currentSkuId, setCurrentSkuId] = useState(null);
    const [currentCounterValue, setCurrentCounterValue] = useState(1);
+   const [isChooseSizeError, setIsChooseSizeError] = useState(false);
 
    // Will be triggered once URL changes (or) API response is got for productDataById from products/:productId
    useEffect(() => {
@@ -116,6 +117,7 @@ const ProductDetails = () => {
    }, [urlParams, productDataById])
 
    const setSelectedColorItem = (selectedColor) => {
+      setCurrentSkuId(null)
       setCurrentVariantId(selectedColor.variantId)
       setItemStockLimit(1)
       setCurrentCounterValue(1)
@@ -128,6 +130,7 @@ const ProductDetails = () => {
       const stockLimitCount = selectedVariantData?.sizes.find(ele => ele._id === selectedSize?.sizeUniqueId).unitsCountInStock;
       setItemStockLimit(stockLimitCount)
       setCurrentCounterValue(1)
+      setIsChooseSizeError(false)
    }
 
    const setCurrentCountValue = (count) => {
@@ -135,36 +138,40 @@ const ProductDetails = () => {
    }
 
    const onAddToCartClicked = () => {
-      const cartDetails = {
-         variantId: currentVariantId,
-         skuId: currentSkuId,
-         productId: productDataById?._id,
-         name: productDataById?.name,
-         image: productDataById?.productImages[0],
-         colorName: selectedVariantData?.colorName,
-         sizeName: selectedVariantData?.sizes?.find(sizeVariant => currentSkuId === sizeVariant._id).sizeName,
-         numberOfUnits: currentCounterValue,
-         price: priceData?.currentPrice,
-         currencyCode: priceData?.currencyCode,
-         unitsCountInStock: itemStockLimit,
-      }
-      const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
-      if (localCartDetails && localCartDetails.cartItems) {
-         let alreadyAddedSkuItemIndex = 0;
-         const alreadyAddedSkuItemInCart = localCartDetails?.cartItems.find((localCartDetail, index) => {
-            alreadyAddedSkuItemIndex = index;
-            return localCartDetail.variantId === currentVariantId && localCartDetail.skuId === currentSkuId;
-         })
-         if (alreadyAddedSkuItemInCart) {
-            cartDetails.numberOfUnits = cartDetails.numberOfUnits += alreadyAddedSkuItemInCart.numberOfUnits;
-            localCartDetails.cartItems[alreadyAddedSkuItemIndex] = cartDetails;
-         } else {
-            localCartDetails.cartItems.push(cartDetails)
+      if (currentSkuId) {
+         const cartDetails = {
+            variantId: currentVariantId,
+            skuId: currentSkuId,
+            productId: productDataById?._id,
+            name: productDataById?.name,
+            image: productDataById?.productImages[0],
+            colorName: selectedVariantData?.colorName,
+            sizeName: selectedVariantData?.sizes?.find(sizeVariant => currentSkuId === sizeVariant._id).sizeName,
+            numberOfUnits: currentCounterValue,
+            price: priceData?.currentPrice,
+            currencyCode: priceData?.currencyCode,
+            unitsCountInStock: itemStockLimit,
          }
-         localStorage.setItem('cartDetails', JSON.stringify(localCartDetails))
+         const localCartDetails = JSON.parse(localStorage.getItem('cartDetails'))
+         if (localCartDetails && localCartDetails.cartItems) {
+            let alreadyAddedSkuItemIndex = 0;
+            const alreadyAddedSkuItemInCart = localCartDetails?.cartItems.find((localCartDetail, index) => {
+               alreadyAddedSkuItemIndex = index;
+               return localCartDetail.variantId === currentVariantId && localCartDetail.skuId === currentSkuId;
+            })
+            if (alreadyAddedSkuItemInCart) {
+               cartDetails.numberOfUnits = cartDetails.numberOfUnits += alreadyAddedSkuItemInCart.numberOfUnits;
+               localCartDetails.cartItems[alreadyAddedSkuItemIndex] = cartDetails;
+            } else {
+               localCartDetails.cartItems.push(cartDetails)
+            }
+            localStorage.setItem('cartDetails', JSON.stringify(localCartDetails))
+         } else {
+            const cartItemsList = { cartItems: [cartDetails] }
+            localStorage.setItem('cartDetails', JSON.stringify(cartItemsList))
+         }
       } else {
-         const cartItemsList = { cartItems: [cartDetails] }
-         localStorage.setItem('cartDetails', JSON.stringify(cartItemsList))
+         setIsChooseSizeError(true)
       }
    }
 
@@ -222,6 +229,7 @@ const ProductDetails = () => {
                            <div className='available-sizes'>
                               <span>Choose Size</span>
                               <CommonChipGroup chipsList={availableSizesList} selectedItem={setSelectedSizeItem} />
+                              {isChooseSizeError && <span className='error-choose-size'>Please choose a size</span>}
                            </div>
                            <Divider variant='fullWidth' className='product-divider' />
                            <div className='product-actions'>
